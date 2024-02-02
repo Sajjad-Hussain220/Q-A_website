@@ -1,0 +1,358 @@
+body {
+    margin: 0%;
+    padding: 0%;
+    height: 100Vh;
+    width: 100vw;
+    font-family: 'Fira Sans Condensed', sans-serif;
+    overflow-x: hidden;
+
+}
+
+#nav {
+    background-color: rgb(48, 48, 48);
+    width: 100vw;
+    height: 65px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+}
+
+#logos {
+    position: relative;
+}
+
+.logo_Web {
+    width: 200px;
+    margin-left: 2vw;
+}
+
+.logo_mob {
+    display: none;
+}
+
+#nave_button
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 4vw;
+    gap: 1vw;
+    
+}
+.serach_nav
+{
+    display:none ;
+}
+.write_nav_logo
+{
+    padding-right: 5px;
+}
+.login {
+
+    background-color: rgb(54, 148, 60);
+    color: white;
+    border: none;
+    font-size: 100%;
+    font-weight: 700;
+    padding: 5px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.login:hover {
+    background-color: rgb(66, 181, 73);
+}
+
+#your_ques {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    margin-top: 100px;
+}
+
+.your_ques_heading {
+    color: rgb(48, 48, 48);
+    font-size: 3vw;
+}
+
+#your_ques_input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10PX;
+    margin-top: -2vw;
+}
+
+.question_input {
+    border: 1px solid rgb(54, 148, 60);
+    width: 50vw;
+    line-height: 25px;
+    margin-top: 5px;
+    border-radius: 4px;
+    padding: 5px;
+}
+
+.question_input:focus {
+    outline: none;
+}
+
+.serch {
+    background-color: rgb(54, 148, 60);
+    color: white;
+    border: none;
+    padding: 6PX 13px;
+    font-size: 20PX;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 2PX;
+
+}
+
+.ri-search-line:hover {
+    background-color: rgb(66, 181, 73);
+}
+
+#log-sign {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    margin-top: 2vw;
+    color: rgb(48, 48, 48);
+
+
+}
+
+a {
+
+    text-decoration: none;
+}
+
+.log_anchor,
+.Sign_anchor {
+    cursor: pointer;
+    color: rgb(66, 181, 73);
+    font-weight: 500;
+}
+
+.about_question {
+    text-align: center;
+    font-size: 22px;
+    font-weight: 400;
+    margin-top: 30PX;
+}
+
+#all_subject {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 17px;
+}
+
+.subject_select {
+    border: 1px solid rgb(66, 181, 73);
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    border-radius: 1vw;
+    cursor: pointer;
+
+
+}
+
+.subject_selection {
+    color: inherit;
+}
+
+.subect_tital {
+    color: rgb(48, 48, 48);
+    font-size: 35px;
+    font-weight: 900;
+    margin: 0px;
+    padding: 10px 10px 0px 10px;
+}
+
+#boys_&_girls_pixture {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.mans_qirls_pic {
+
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    margin-top: -10vw;
+    margin-left: -1vw;
+}
+
+#tranding_question_main {
+    border-top: 1px solid rgb(245, 245, 245);
+    background-color: rgb(245, 245, 245);
+    color: rgb(48, 48, 48);
+    margin-top: -3vw;
+}
+
+.tranding_question_container {
+    padding-left: 15px;
+    padding-right: 15PX;
+    border-radius: 10PX;
+    background-color: white;
+    border: 1px solid transparent;
+    box-shadow: 1px 1px 20px rgb(66, 181, 73),
+        1px 1px 10px rgb(66, 181, 73);
+    margin: 5vw;
+    overflow-wrap: wrap;
+}
+
+.tranding_question_heading {
+    text-align: center;
+    font-weight: 800;
+    font-size: 30px;
+    letter-spacing: 1px;
+}
+
+#fottor {
+    margin-top: 10vw;
+    background-color: rgb(48, 48, 48);
+    width: 100%;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fottor_items {
+    padding-top: 3vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+}
+
+.company_logo {
+    width: 30rem;
+    margin-left: -2vw;
+}
+
+.fa {
+    margin-top: 20PX;
+    font-size: 30px;
+    width: 50PX;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.fa:hover {
+    opacity: 0.7;
+    color: rgb(233, 229, 229);
+
+}
+
+.fa-facebook,
+.fa-twitter,
+.fa-linkedin,
+.fa-instagram,
+.fa-google {
+    color: white;
+}
+
+.Copyright {
+    text-decoration: none;
+    color: white;
+    color: inherit;
+}
+
+.para {
+    max-width: 40rem;
+    line-height: 1rem;
+    font-size: 12px;
+    margin: 15px;
+    text-align: center;
+}
+
+@media (max-width: 600px) {
+    body {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        overflow-x: hidden;
+    }
+
+    #nav {
+        position: fixed;
+        top: 0;
+    }
+   
+    .logo_Web {
+        display: none;
+
+    }
+
+    .logo_mob {
+        display: inline-block;
+        width: 50px;
+        margin-left: 7vw;
+
+    }
+
+    #nave_button{
+        margin-right: 8vw;
+    }
+
+    #your_ques {
+        margin-top: 70px;
+    }
+
+    .your_ques_heading {
+        font-size: 6VW;
+    }
+
+    #your_ques_input {
+        margin-top: -12px;
+    }
+
+    .question_input {
+        width: 60vw;
+    }
+
+    #log-sign {
+        margin-top: 20px;
+    }
+
+    .about_question {
+        font-size: 17px;
+        margin-top: 30PX;
+    }
+
+    .mans_qirls_pic {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        margin-left: 0VW;
+        margin-top: -5vw;
+    }
+    .tranding_question_container
+    {
+      
+        margin: 20px 0px 20px 0px; 
+    }
+    .company_logo {
+        width: 20rem;
+        margin-left: -2vw;
+    }
+
+}

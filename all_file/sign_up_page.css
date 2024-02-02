@@ -1,0 +1,141 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+    font-family: 'Fira Sans Condensed', sans-serif;
+    overflow-x: hidden;
+    color: rgb(48, 48, 48);
+}
+#sign_up_page_main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    /* background-color: #2980b9; */
+    width: 100vw;
+
+}
+
+.close {
+    position: fixed;
+    top: 10px; /* Adjust the top distance as needed */
+    right: 10px; /* Adjust the right distance as needed */
+    background-color: rgb(54, 148, 60);
+    color: white;
+    border: none;
+    font-size: 100%;
+    font-weight: 700;
+    padding: 5px 8px;   
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 15px;
+}
+
+.close:hover {
+    background-color: rgb(66, 181, 73);
+}
+
+.heading_sign_up {
+    text-align: center;
+}
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+img.sign_up_man {
+    position: absolute;
+    width: 42rem;
+}
+
+img.sign_up_tree {
+    width: 7rem;
+    margin-top: 22rem;
+    position: absolute;
+    margin-left: 20rem;
+}
+
+.sign_up_form {
+    background-color: #f4f4f4;
+    padding: 20px;
+    position: relative;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgb(54, 148, 60);
+    /* margin-left: -26rem; */
+}
+
+.sign_up_form form {
+    display: flex;
+    flex-direction: column;
+}
+
+.sign_up_form label {
+    margin-bottom: 8px;
+}
+
+.sign_up_form input {
+    padding: 8px;
+    margin-bottom: 16px;
+    border: 1px solid rgb(54, 148, 60);
+    ;
+    border-radius: 4px;
+    outline: none;
+}
+
+.sign_up_form button {
+    background-color: rgb(54, 148, 60);
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+
+}
+
+.sign_up_form button:hover {
+    background-color: rgb(66, 181, 73);
+
+}
+
+.password_icon {
+    margin-left: -30px;
+}
+
+.Already_login {
+    font-size: 12px;
+    text-align: center;
+}
+
+.login_link {
+    text-decoration: none;
+    color: rgb(54, 148, 60);
+    cursor: pointer;
+}
+
+.login_link:hover {
+    color: rgb(66, 181, 73);
+}
+
+@media (max-width: 600px) {
+    img.sign_up_man {
+        width: 30rem;
+        margin-left: 2rem;
+        margin-top: 8rem;
+    }
+
+    img.sign_up_tree {
+        width: 4rem;
+        margin-top: 25rem;
+        margin-left: 22rem;
+    }
+
+    .sign_up_form {
+        padding: 10px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgb(54, 148, 60);
+        margin-left: 5rem;
+    }
+    
+
+}
