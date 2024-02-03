@@ -15,6 +15,7 @@ body {
     width: 100vw;
 
 }
+
 .icons_tops{
     position: fixed;
     top: 10px; 
@@ -44,7 +45,7 @@ a{
 }
 
 
-
+ 
 .sign_up_form {
     background-color: #f4f4f4;
     padding: 20px;
@@ -66,7 +67,7 @@ a{
     padding: 8px;
     margin-bottom: 16px;
     border: 1px solid rgb(54, 148, 60);
-    ;
+
     border-radius: 4px;
     outline: none;
 }
@@ -78,7 +79,6 @@ a{
     border: none;
     border-radius: 4px;
     cursor: pointer;
-
 }
 
 .sign_up_form button:hover {
@@ -90,19 +90,32 @@ a{
     margin-left: -30px;
 }
 
-.Already_login {
+.Already_sign_up{
     font-size: 12px;
     text-align: center;
 }
 
-.login_link {
+.sign_up {
     text-decoration: none;
     color: rgb(54, 148, 60);
     cursor: pointer;
 }
 
-.login_link:hover {
+.sign_up:hover {
     color: rgb(66, 181, 73);
+}
+.button{
+    margin-bottom: 1rem;
+}
+.button_with_apple , .button_with_facbook , .button_with_google
+{
+    width: 12rem;
+    margin-top: 0.5rem;
+}
+
+.connect_icon
+{
+    margin-right: 0.5rem;
 }
 
 @media (max-width: 600px) {

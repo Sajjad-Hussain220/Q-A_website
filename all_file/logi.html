@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Q & A - sign_up page</title>
-    <link rel="stylesheet" href="sign_up_page.css">
+    <title>Q & A - Login page</title>
+    <link rel="stylesheet" href="login.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,18 +18,19 @@
 
 <body>
     <div class="div_main">
-        <button class="close serach_nav">
-            <a href="../index.html" ><i class="ri-close-fill"></i></a>
-            </i></button>
+        <div class="icons_tops">
+            <button class="close">
+                <a href="./logi.html"><i class="ri-refresh-line"></i></a>
+                </i></button>
+            <button class="close ">
+                <a href="../index.html"><i class="ri-close-fill"></i></a>
+                </i></button>
+        </div>
         <div id="sign_up_page_main">
-
-            <img src="./sign-up-man.png" alt="sign_up_man" class="sign_up_man">
 
             <div class="sign_up_form">
                 <form>
-                    <h2 class="heading_sign_up">Sign up</h2>
-                    <label for="name">Name:</label>
-                    <input type="text" id="name" name="name" required>
+                    <h2 class="heading_sign_up">Login</h2>
 
                     <label for="email">Email:</label>
                     <input type="email" id="email" name="email" required>
@@ -41,22 +42,29 @@
                             <i class="ri-eye-off-fill password_icon"></i>
                         </span>
                     </div>
-
-                    <label for="confirm-password">Confirm Password:</label>
-                    <div class="password-container">
-                        <input type="password" id="confirm-password" name="confirm-password" required>
-                        <span class="toggle-password" onclick="togglePassword('confirm-password')">
-                            <i class="ri-eye-off-fill password_icon"></i>
-                        </span>
+                    <button type="submit" class="button">Login</button>
+                    <div class="div_icon">
+                        <button type="submit" class="button_with_google">
+                            <i class="ri-google-fill connect_icon"></i>Connect with Google
+                        </button>
                     </div>
+                    <div class="div_icon">
 
-                    <button type="submit">Register</button>
-                    <h3 class="Already_login">Already have an account?<a href="#" class="login_link"> Login</a></h3>
+                        <button type="submit" class="button_with_facbook">
+                            <i class="ri-facebook-fill connect_icon"></i>Connect with Facebook
+                        </button>
+                    </div>
+                    <div class="div_icon">
+                        <button type="submit" class="button_with_apple">
+                            <i class="ri-apple-fill connect_icon"></i>Connect with Apple
+                        </button>
+                    </div>
+                    <h3 class="Already_sign_up">Crete an<a href="./sign_up.html" class="sign_up"> Account</a></h3>
 
                 </form>
 
             </div>
-            <img src="./sign_up_tree.png" alt="sign_up_tree" class="sign_up_tree">
+
         </div>
     </div>
     <script src="sign_up.js"></script>
