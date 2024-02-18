@@ -36,27 +36,25 @@ let registerUser = async (evt) => {
 
     try {
         if (object.user_password === object.userCon_pass) {
-            if (window.confirm(`Is this your email? ${object.useremail}`)) {
-                createUserWithEmailAndPassword(auth, object.useremail, object.user_password)
-                    .then(async (userCredential) => {
-                        await sendingVerifyEmail(userCredential.user);
-                        const ref = doc(dp, "user_information", userCredential.user.uid);
-                        await setDoc(ref, {
-                            Name: object.username,
-                            email: object.useremail,
-                        });
-                        console.log(user.email)
-                        // window.location.href = "http://127.0.0.1:5500/index.html";
-                    })
-                    .catch((error) => {
-                        const errorCode = error.code;
-                        const errorMessage = error.message;
-                        alert(errorCode);
-                        alert(errorMessage);
+
+            createUserWithEmailAndPassword(auth, object.useremail, object.user_password)
+                .then(async (userCredential) => {
+                    await sendingVerifyEmail(userCredential.user);
+                    const ref = doc(dp, "user_information", userCredential.user.uid);
+                    await setDoc(ref, {
+                        Name: object.username,
+                        email: object.useremail,
                     });
-            } else {
-                alert("You didn't confirm the email.");
-            }
+                    // console.log(user.email)
+                    window.location.href = "http://127.0.0.1:5500/all_file/logi.html";
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    alert(errorCode);
+                    alert(errorMessage);
+                });
+
         } else {
             alert("Your password and confirm password do not match.");
         }
