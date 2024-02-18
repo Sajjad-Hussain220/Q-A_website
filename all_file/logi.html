@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@200;300;400;500;600&display=swap"
         rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet" />
-    <link rel="icon" href="favicon.png" type="image">
+    <!-- <link rel="icon" href="favicon.png" type="image"> -->
 
 </head>
 
@@ -29,7 +29,7 @@
         <div id="sign_up_page_main">
 
             <div class="sign_up_form">
-                <form>
+                <form id="login_form">
                     <h2 class="heading_sign_up">Login</h2>
 
                     <label for="email">Email:</label>
@@ -38,19 +38,23 @@
                     <label for="password">Password:</label>
                     <div class="password-container">
                         <input type="password" id="password" name="password" required>
-                        <span class="toggle-password" onclick="togglePassword('password')">
+                        <span class="toggle-password" id="toggle-password1">
                             <i class="ri-eye-off-fill password_icon"></i>
                         </span>
                     </div>
-                    <button type="submit" class="button">Login</button>
+                    <h3 class="Forget_password"><a href="./forget_password.html" class="sign_up">Forget Password</a></h3>
+
+                    <button type="submit" class="button" id="login_button">Login</button>
+                </form>
+                   
                     <div class="div_icon">
-                        <button type="submit" class="button_with_google">
+                        <button type="submit" class="button_with_google" id="google_button">
                             <i class="ri-google-fill connect_icon"></i>Connect with Google
                         </button>
                     </div>
                     <div class="div_icon">
 
-                        <button type="submit" class="button_with_facbook">
+                        <button type="submit" class="button_with_facbook" id="facbook_button">
                             <i class="ri-facebook-fill connect_icon"></i>Connect with Facebook
                         </button>
                     </div>
@@ -61,13 +65,13 @@
                     </div>
                     <h3 class="Already_sign_up">Crete an<a href="./sign_up.html" class="sign_up"> Account</a></h3>
 
-                </form>
 
             </div>
 
         </div>
     </div>
-    <script src="sign_up.js"></script>
+    <script type="module" src="./login.js"></script>
+    <script type="module" src="./website_logins.js"></script>
 </body>
 
 </html>

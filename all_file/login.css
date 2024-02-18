@@ -7,6 +7,9 @@ body {
     overflow-x: hidden;
     color: rgb(48, 48, 48);
 }
+*:focus {
+    outline: none;
+}
 #sign_up_page_main {
     display: flex;
     justify-content: center;
@@ -45,7 +48,11 @@ a{
 }
 
 
- 
+.Forget_password
+{
+    margin-top: -7px;
+    font-size: 12px;
+}
 .sign_up_form {
     background-color: #f4f4f4;
     padding: 20px;
@@ -109,7 +116,7 @@ a{
 }
 .button_with_apple , .button_with_facbook , .button_with_google
 {
-    width: 12rem;
+    width: 100%;
     margin-top: 0.5rem;
 }
 

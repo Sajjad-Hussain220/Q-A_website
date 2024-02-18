@@ -7,7 +7,6 @@ body {
     overflow-x: hidden;
     color: rgb(48, 48, 48);
 }
-
 *:focus {
     outline: none;
 }
@@ -19,6 +18,7 @@ body {
     width: 100vw;
 
 }
+
 .icons_tops{
     position: fixed;
     top: 10px; 
@@ -48,7 +48,7 @@ a{
 }
 
 
-
+ 
 .sign_up_form {
     background-color: #f4f4f4;
     padding: 20px;
@@ -70,9 +70,10 @@ a{
     padding: 8px;
     margin-bottom: 16px;
     border: 1px solid rgb(54, 148, 60);
-    ;
+
     border-radius: 4px;
     outline: none;
+    margin-top: 20px;
 }
 
 .sign_up_form button {
@@ -82,7 +83,7 @@ a{
     border: none;
     border-radius: 4px;
     cursor: pointer;
-
+    width: 20%;
 }
 
 .sign_up_form button:hover {
@@ -90,25 +91,41 @@ a{
 
 }
 
-.password_icon {
-    margin-left: -30px;
-}
 
-.Already_login {
-    font-size: 12px;
+#your_ques {
+    display: flex;
+    justify-content: center;
     text-align: center;
+    flex-direction: column;
 }
 
-.login_link {
-    text-decoration: none;
-    color: rgb(54, 148, 60);
-    cursor: pointer;
+.your_ques_heading {
+    font-size: 2rem;
 }
 
-.login_link:hover {
-    color: rgb(66, 181, 73);
+#your_ques_input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10PX;
+    margin-top: -2vw;
 }
 
+.question_input {
+    border: 1px solid rgb(54, 148, 60);
+    width: 50vw;
+    line-height: 25px;
+    margin-top: 50px;
+    border-radius: 4px;
+    padding: 5px;
+}
+.serch
+{
+    margin-right: 5px;
+}
+.question_input:focus {
+    outline: none;
+}
 @media (max-width: 600px) {
 
     .sign_up_form {
@@ -117,5 +134,17 @@ a{
         box-shadow: 0 0 10px rgb(54, 148, 60);
     }
     
+    .your_ques_heading {
+        font-size: 1.7rem;
+    }
+    .question_input
+    {
+        width: 70vw;
+    }
+
+    .sign_up_form button {
+        width: 40%;
+    }
 
 }
+

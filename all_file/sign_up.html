@@ -30,7 +30,7 @@
 
 
                 <div class="sign_up_form">
-                    <form>
+                    <form id="Register_form">
                         <h2 class="heading_sign_up">Sign up</h2>
                         <label for="name">Name:</label>
                         <input type="text" id="name" name="name" required>
@@ -41,7 +41,7 @@
                         <label for="password">Password:</label>
                         <div class="password-container">
                             <input type="password" id="password" name="password" required>
-                            <span class="toggle-password" onclick="togglePassword('password')">
+                            <span class="toggle-password" id="toggle-password">
                                 <i class="ri-eye-off-fill password_icon"></i>
                             </span>
                         </div>
@@ -49,12 +49,12 @@
                         <label for="confirm-password">Confirm Password:</label>
                         <div class="password-container">
                             <input type="password" id="confirm-password" name="confirm-password" required>
-                            <span class="toggle-password" onclick="togglePassword('confirm-password')">
+                            <span class="toggle-password" id="toggle-confirm-password">
                                 <i class="ri-eye-off-fill password_icon"></i>
                             </span>
                         </div>
 
-                        <button type="submit">Register</button>
+                        <button type="submit" id="Register_button">Register</button>
                         <h3 class="Already_login">Already have an account?<a href="./logi.html" class="login_link"> Login</a></h3>
 
                     </form>
@@ -62,7 +62,7 @@
                 </div>
             </div>
     </div>
-    <script src="sign_up.js"></script>
+    <script src="sign_up.js" type="module"></script>
 </body>
 
 </html>
