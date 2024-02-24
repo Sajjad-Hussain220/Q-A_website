@@ -1,14 +1,14 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 import { getFirestore, setDoc, doc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyCK8aUUxBf4eboq9WHsfWvtc3ThFaY-6Fs",
-    authDomain: "q-a-data.firebaseapp.com",
-    projectId: "q-a-data",
-    storageBucket: "q-a-data.appspot.com",
-    messagingSenderId: "785659477281",
-    appId: "1:785659477281:web:4630eb1b1c23ba0ca25260"
+    apiKey: "AIzaSyAGj208UqUvBJXUvDEsDeVgPTEcZxrIST4",
+    authDomain: "q-a-database-bb349.firebaseapp.com",
+    projectId: "q-a-database-bb349",
+    storageBucket: "q-a-database-bb349.appspot.com",
+    messagingSenderId: "1786902174",
+    appId: "1:1786902174:web:c9287eaca141366d816d8f"
 };
 
 const app = initializeApp(firebaseConfig);
@@ -39,13 +39,15 @@ let registerUser = async (evt) => {
 
             createUserWithEmailAndPassword(auth, object.useremail, object.user_password)
                 .then(async (userCredential) => {
-                    await sendingVerifyEmail(userCredential.user);
+                    await   sendEmailVerification(userCredential.user);
                     const ref = doc(dp, "user_information", userCredential.user.uid);
                     await setDoc(ref, {
                         Name: object.username,
                         email: object.useremail,
                     });
-                    // console.log(user.email)
+                    
+                  
+                    alert("please conform email verification link")
                     window.location.href = "http://127.0.0.1:5500/all_file/logi.html";
                 })
                 .catch((error) => {

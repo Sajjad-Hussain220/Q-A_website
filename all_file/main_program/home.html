@@ -4,31 +4,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Q & A</title>
+    <title>Q & A HOME</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@200;300;400;500;600&display=swap"rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@200;300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet" />
     <!-- <link rel="icon" href="favicon.png" type="image"> -->
-    <link rel="stylesheet" href="style.css">
-
+    <link rel="stylesheet" href="home.css">
 </head>
 
-<body id="body">
+<body>
     <div id="main">
         <div id="nav">
             <div id="logos">
-                <a href="http://127.0.0.1:5500/logo_web-01.png"><img src="logo_web-01.png" alt="web_logo"
+                <a href="http://127.0.0.1:5500/logo_web-01.png"><img src="../../logo_web-01.png" alt="web_logo"
                         class="logo_Web"></a>
-                <a href="http://127.0.0.1:5500/logo_mob-01.png"><img src="Logo_mob-01.png" alt="mob_logo"
+                <a href="http://127.0.0.1:5500/logo_mob-01.png"><img src="../../Logo_mob-01.png" alt="mob_logo"
                         class="logo_mob"></a>
             </div>
             <div id="nave_button">
-                <button class="login serach_nav"><a href="./all_file/search_question.html"><i class="ri-search-line serach_nav_icon"></i></a></button>
-                <button class="login write_nav"><a href="./all_file/write_question.html"><i class="ri-file-edit-line write_nav_logo"></i>Write</a></button>
-                <button class="login log_in_nav"> <a href="./all_file/logi.html">Log in</a></button>
+                <button class="login serach_nav"><a href="../search_question.html"><i class="ri-search-line serach_nav_icon"></i></a></button>
+                <button class="login serach_nav"><a href="../search_question.html"><i
+                            class="ri-search-line serach_nav_icon"></i></a></button>
+                <button class="login write_nav"><a href="../write_question.html"><i
+                            class="ri-file-edit-line write_nav_logo"></i>Write</a></button>
+                <div class="user-profile">
+                    <img src="../../green_picture.png" alt="User Profile" class="user-profile-img"  id="user-profile-img">
+                    <div class="profile-dropdown">
+                        <a href="./profile.html">Profile</a>
+                        <a href="#" id="logoutButton">Logout</a>
+                    </div>
+                </div>
             </div>
         </div>
         <div id="your_ques">
@@ -38,113 +46,107 @@
                 <i class="ri-search-line serch"></i>
             </div>
         </div>
-        <div id="log-sign">
-            <a href="./all_file/logi.html" class="log_anchor">Log in</a>
-            <span class=""> or </span>
-            <a href="./all_file/sign_up.html" class="Sign_anchor">Sign up</a>
-        </div>
+       
         <h3 class="about_question">About question</h3>
         <div id="all_subject">
             <div class="subject_select">
-                <a href="#" class="subject_selection">
+                <a href="./post.html?subject=Programming" class="subject_selection">
                     <h2 class="subect_tital">P</h2>Programming
                 </a>
             </div>
             <div class="subject_select">
-                <a href="#" class="subject_selection">
+                <a href="./post.html?subject=Math" class="subject_selection">
                     <h2 class="subect_tital">M</h2>Math
                 </a>
             </div>
             <div class="subject_select">
-                <a href="#" class="subject_selection">
+                <a href="./post.html?subject=Science" class="subject_selection">
                     <h2 class="subect_tital">S</h2>Science
                 </a>
             </div>
             <div class="subject_select">
-                <a href="#" class="subject_selection">
+                <a href="./post.html?subject=History" class="subject_selection">
                     <h2 class="subect_tital">H</h2>History
                 </a>
             </div>
             <div class="subject_select">
-                <a href="#" class="subject_selection">
+                <a href="./post.html?subject=Business" class="subject_selection">
                     <h2 class="subect_tital">B</h2>Business
                 </a>
             </div>
             <div class="subject_select">
-                <a href="#" class="subject_selection">
+                <a href="./post.html?subject=Social%20Studies" class="subject_selection">
                     <h2 class="subect_tital">S S</h2>Social Studies
                 </a>
             </div>
-
-
             <div class="subject_select">
-                <a href="#" class="subject_selection">
+                <a href="./post.html?subject=Sports" class="subject_selection">
                     <h2 class="subect_tital">S</h2>Sports
                 </a>
             </div>
             <div class="subject_select">
-                <a href="#" class="subject_selection">
+                <a href="./post.html?subject=Hobbies" class="subject_selection">
                     <h2 class="subect_tital">H</h2>Hobbies
                 </a>
             </div>
             <div class="subject_select">
-                <a href="#" class="subject_selection">
+                <a href="./post.html?subject=Electronics" class="subject_selection">
                     <h2 class="subect_tital">E</h2>Electronics
                 </a>
             </div>
             <div class="subject_select">
-                <a href="#" class="subject_selection">
+                <a href="./post.html?subject=Audio" class="subject_selection">
                     <h2 class="subect_tital">A</h2>Audio
                 </a>
             </div>
             <div class="subject_select">
-                <a href="#" class="subject_selection">
+                <a href="./post.html?subject=Travel%20%26%20Places" class="subject_selection">
                     <h2 class="subect_tital">T&P</h2>Travel & Places
                 </a>
             </div>
             <div class="subject_select">
-                <a href="#" class="subject_selection">
+                <a href="./post.html?subject=Books%20%26%20Literature" class="subject_selection">
                     <h2 class="subect_tital">B&L</h2>Books & Literature
                 </a>
             </div>
             <div class="subject_select">
-                <a href="#" class="subject_selection">
+                <a href="./post.html?subject=Food%20%26%20Drink" class="subject_selection">
                     <h2 class="subect_tital">F&D</h2>Food & Drink
                 </a>
             </div>
             <div class="subject_select">
-                <a href="#" class="subject_selection">
+                <a href="./post.html?subject=Jobs%20%26%20Education" class="subject_selection">
                     <h2 class="subect_tital">J&E</h2>Jobs & Education
                 </a>
             </div>
             <div class="subject_select">
-                <a href="#" class="subject_selection">
+                <a href="./post.html?subject=Law%20%26%20Government" class="subject_selection">
                     <h2 class="subect_tital">L&G</h2>Law & Government
                 </a>
             </div>
             <div class="subject_select">
-                <a href="#" class="subject_selection">
+                <a href="./post.html?subject=Arts%20%26%20Entertainment" class="subject_selection">
                     <h2 class="subect_tital">A&E</h2>Arts & Entertainment
                 </a>
             </div>
             <div class="subject_select">
-                <a href="#" class="subject_selection">
+                <a href="./post.html?subject=Animals%20%26%20Plants" class="subject_selection">
                     <h2 class="subect_tital">A&P</h2>Animals & Plants
                 </a>
             </div>
             <div class="subject_select">
-                <a href="#" class="subject_selection">
+                <a href="./post.html?subject=Engineering%20%26%20Technology" class="subject_selection">
                     <h2 class="subect_tital">E&T</h2>Engineering & Technology
                 </a>
             </div>
             <div class="subject_select">
-                <a href="#" class="subject_selection">
+                <a href="./post.html?subject=All%20Subject" class="subject_selection">
                     <h2 class="subect_tital">A</h2>All Subject
-                </a>
+                </a>        
             </div>
         </div>
         <div id="boys_&_girls_pixture">
-            <img src="mans_qirls_pic_Artboard 1.png" alt="mans_and_girls Q & A " class="mans_qirls_pic">
+            <img src="../../mans_qirls_pic_Artboard 1.png" alt="mans_and_girls Q & A " class="mans_qirls_pic">
         </div>
 
         <div id="tranding_question_main">
@@ -178,7 +180,7 @@
 
         <div id="fottor">
             <div class="fottor_items">
-                <img src="logo_web-01.png" alt="website logo" class="company_logo">
+                <img src="../../logo_web-01.png" alt="website logo" class="company_logo">
                 <div class="connecting_with_media">
                     <a href="#" class="fa fa-facebook"></a>
                     <a href="#" class="fa fa-twitter"></a>
@@ -194,11 +196,9 @@
             </div>
 
         </div>
-        <script type="module" src="index.js"></script>
-<!--         
-    <script src="./all_file/write_question.js"></script> -->
-
-        
+    </div>
+    <script type="module" src="home.js"></script>
+    <script src="./post.html"></script>
         
 </body>
 

@@ -1,25 +1,25 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 import { getFirestore, collection, getDoc, doc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyCK8aUUxBf4eboq9WHsfWvtc3ThFaY-6Fs",
-    authDomain: "q-a-data.firebaseapp.com",
-    projectId: "q-a-data",
-    storageBucket: "q-a-data.appspot.com",
-    messagingSenderId: "785659477281",
-    appId: "1:785659477281:web:4630eb1b1c23ba0ca25260"
-};
-
+    apiKey: "AIzaSyAGj208UqUvBJXUvDEsDeVgPTEcZxrIST4",
+    authDomain: "q-a-database-bb349.firebaseapp.com",
+    projectId: "q-a-database-bb349",
+    storageBucket: "q-a-database-bb349.appspot.com",
+    messagingSenderId: "1786902174",
+    appId: "1:1786902174:web:c9287eaca141366d816d8f"
+  };
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const dp = getFirestore(app);
-// const usersCollection = collection(firestore, "user_information");
+
 
 let email = document.getElementById("email");
 let password = document.getElementById("password");
 let toggle_password = document.getElementById("toggle-password1");
 let login_form = document.getElementById("login_form");
+
 let login_here = async evt => {
     evt.preventDefault();
 
@@ -35,6 +35,7 @@ let login_here = async evt => {
                     const user = userCredential.user;
                     console.log("User logged in:", user);
 
+
                     var ref = doc(dp, "user_information", user.uid);
                     const docsnap = await getDoc(ref);
 
@@ -45,25 +46,31 @@ let login_here = async evt => {
                             Name: userName
                         }));
                     }
-
-                })
-                .catch((error) => {
-                    const errorCode = error.code;
-                    const errorMessage = error.message;
-                    alert(errorCode);
-                    alert(errorMessage);
-                });
-        } else {
-            alert("Password should be at least 6 characters long.");
-        }
+                    onAuthStateChanged(auth, (user) => {
+                        if (user) {
+                            window.location.href = "./main_program/home.html";
+                            console.log("welcom")
+                        }
+                    })
+                        })
+                        .catch((error) => {
+                            const errorCode = error.code;
+                            const errorMessage = error.message;
+                            alert(errorCode);
+                            alert(errorMessage);
+                        });
+                } else {
+                    alert("Password should be at least 6 characters long.");
+                }
     } catch (error) {
-        alert("An unexpected error occurred.");
-        console.error(error);
+            alert("An unexpected error occurred.");
+            console.error(error);
+        }
     }
-}
 
-// Attach the submit event to the form, not the button
+
 login_form.addEventListener("submit", login_here);
+
 
 
 

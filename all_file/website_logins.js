@@ -1,84 +1,46 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-import { getAuth, signInWithPopup, GoogleAuthProvider , FacebookAuthProvider} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-import { getFirestore, collection, getDoc,setDoc, doc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-
+import { getAuth, signInWithPopup, GoogleAuthProvider} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+import { getFirestore, collection, getDoc, setDoc, doc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 const firebaseConfig = {
-  apiKey: "AIzaSyCK8aUUxBf4eboq9WHsfWvtc3ThFaY-6Fs",
-  authDomain: "q-a-data.firebaseapp.com",
-  projectId: "q-a-data",
-  storageBucket: "q-a-data.appspot.com",
-  messagingSenderId: "785659477281",
-  appId: "1:785659477281:web:4630eb1b1c23ba0ca25260"
+  apiKey: "AIzaSyAGj208UqUvBJXUvDEsDeVgPTEcZxrIST4",
+  authDomain: "q-a-database-bb349.firebaseapp.com",
+  projectId: "q-a-database-bb349",
+  storageBucket: "q-a-database-bb349.appspot.com",
+  messagingSenderId: "1786902174",
+  appId: "1:1786902174:web:c9287eaca141366d816d8f"
 };
-
 
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-const dp = getFirestore(app);
+const db = getFirestore(app);
 const provider = new GoogleAuthProvider();
-const provider2 = new FacebookAuthProvider();
+
+
 
 const google_button = document.getElementById('google_button');
-google_button.addEventListener("click", function () {
+google_button.addEventListener("click", async function () {
+  try {
+    const result = await signInWithPopup(auth, provider);
+    const credential = GoogleAuthProvider.credentialFromResult(result);
+    const token = credential.accessToken;
+    const user = result.user;
 
-  signInWithPopup(auth, provider)
-    .then(async (result) => {
-  
-      const credential = GoogleAuthProvider.credentialFromResult(result);
-      const token = credential.accessToken;
+    console.log(user.email);
 
-      const user = result.user;
-    
-      console.log(user.email)
+    const profilePictureURL = user.photoURL;
 
-      var ref = doc(dp, "user_information", user.uid);
-      await setDoc(ref, {
-        Name: user.displayName,  
-        email: user.email,
-      })
-
-    }).catch((error) => {
-     
-      const errorCode = error.code;
-      const errorMessage = error.message;
-   console.log(errorCode)
-   console.log(errorMessage)
-
+    const userDocRef = doc(db, "user_information", user.uid);
+    await setDoc(userDocRef, {
+      Name: user.displayName,
+      email: user.email,
+      profilePictureURL: profilePictureURL
     });
-})
-// facbook login
-const facbook_button = document.getElementById('facbook_button');
-facbook_button.addEventListener("click", function () {
-  provider2.addScope('user_birthday');
-  
-  signInWithPopup(auth, provider2)
-    .then(async (result) => {
-      const credential = FacebookAuthProvider.credentialFromResult(result);
-      const accessToken = credential.accessToken;
-      const user = result.user;
 
-      var ref = doc(dp, "user_information", user.uid);
-      await setDoc(ref, {
-        Name: user.displayName,
-        email: user.email,
-      });
-
-      console.log(user.email);
-    })
-    .catch((error) => {
-      if (error.code === 'auth/popup-closed-by-user') {
-        // Handle the case where the user closed the popup without completing the login
-        console.log('User closed the Facebook login popup.');
-      } else {
-        // Handle other errors
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode);
-        console.log(errorMessage);
-        const email = error.customData?.email;
-        // AuthCredential type that was used.
-        const credential = FacebookAuthProvider.credentialFromError(error);
-      }
-    });
+    window.location.href = "./main_program/home.html";
+  } catch (error) {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.error(errorCode, errorMessage);
+  }
 });

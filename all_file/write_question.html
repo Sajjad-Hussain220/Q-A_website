@@ -22,58 +22,59 @@
         <div class="div_main">
             <div class="icons_tops">
                 <button class="close">
-                    <a href="./write_question.html"><i class="ri-refresh-line"></i></a>
+                    <a href="#"><i class="ri-refresh-line"></i></a>
                     </i></button>
-                <button class="close ">
-                    <a href="../index.html"><i class="ri-close-fill"></i></a>
+                <button class="close" id="closeButton">
+                    <a href="./write_question.html" ><i class="ri-close-fill"></i></a>
                     </i></button>
             </div>
             <div id="sign_up_page_main">
-    
+
                 <div class="sign_up_form">
                     <form id="login_form">
                         <h2 class="heading_sign_up">Write a Question</h2>
-    
+
                         <div id="Subject_div">
                             <h3>TYPE:</h2>
-                            <select class="subjectSelect" name="subject" required>
-                                <option value="">Select</option>
-                                <option value="">Programming</option>
-                                <option value="">Math</option>
-                                <option value="">Science</option>
-                                <option value="">History</option>
-                                <option value="">Business</option>
-                                <option value="">Social Studies</option>
-                                <option value="">Sports</option>
-                                <option value="">Hobbies</option>
-                                <option value="">Electronics</option>
-                                <option value="">Audio</option>
-                                <option value="">Travel & Places</option>
-                                <option value="">Books & Literature</option>
-                                <option value="">Food & Drink</option>
-                                <option value="">Jobs & Education</option>
-                                <option value="Law & Government">Law & Government</option>
-                                <option value="Arts & Entertainment">Arts & Entertainment</option>
-                                <option value="Animals & Plants">Animals & Plants</option>
-                                <option value="Engineering & Technology">Engineering & Technology</option>
-                            </select>
+                                <select class="subjectSelect" name="subject" required>
+                                    <option value="">Select</option>
+                                    <option value="Programming">Programming</option>
+                                    <option value="Math">Math</option>
+                                    <option value="Science">Science</option>
+                                    <option value="History">History</option>
+                                    <option value="Business">Business</option>
+                                    <option value="Social Studies">Social Studies</option>
+                                    <option value="Sports">Sports</option>
+                                    <option value="Hobbies">Hobbies</option>
+                                    <option value="Electronics">Electronics</option>
+                                    <option value="Audio">Audio</option>
+                                    <option value="Travel & Places">Travel & Places</option>
+                                    <option value="Books & Literature">Books & Literature</option>
+                                    <option value="Food & Drink">Food & Drink</option>
+                                    <option value="Jobs & Education">Jobs & Education</option>
+                                    <option value="Law & Government">Law & Government</option>
+                                    <option value="Arts & Entertainment">Arts & Entertainment</option>
+                                    <option value="Animals & Plants">Animals & Plants</option>
+                                    <option value="Engineering & Technology">Engineering & Technology</option>
+                                </select>
                         </div>
-    
+
                         <div id="textarea">
                             <h3>Ask Your Question:</h2>
-                            <textarea rows="10" class="textarea" placeholder="What does console.log function do in JavaScript" required></textarea>
+                                <textarea rows="10" class="textarea"
+                                    placeholder="What does console.log function do in JavaScript" required></textarea>
                         </div>
                         <button type="button" class="button" id="Submit_button">Submit</button>
                     </form>
-                     
-    
-    
+
+
+
                 </div>
-    
+
             </div>
         </div>
-
-    <script src="./write_question.js"></script>
+    </div>
+    <script type="module" src="./write_question.js"></script>
 
 
 
