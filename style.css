@@ -180,7 +180,6 @@ a {
     margin: 0px;
     padding: 10px 10px 0px 10px;
 }
-
 #boys_&_girls_pixture {
     width: 100vw;
     height: 100vh;
@@ -188,18 +187,19 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
-
-
 }
 
 .mans_qirls_pic {
-    width: 100%;
-    height: 100%;
+    width: 55%;
+    height: 55%;
     object-fit: cover;
-    margin-top: 0vw;
-    margin-left: -1vw;
+    margin: auto;
+    display: block; /* This ensures that margin: auto works */
 }
-
+.Arrow_top_related
+{
+    margin-right: 1rem;
+}
 #tranding_question_main {
     border-top: 1px solid rgb(245, 245, 245);
     background-color: rgb(245, 245, 245);
@@ -218,7 +218,13 @@ a {
     margin: 5vw;
     overflow-wrap: wrap;
 }
-
+.div_qu
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
 .tranding_question_heading {
     text-align: center;
     font-weight: 800;

@@ -1,0 +1,183 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+    font-family: 'Fira Sans Condensed', sans-serif;
+    overflow-x: hidden;
+    color: rgb(48, 48, 48);
+}
+
+*:focus {
+    outline: none;
+}
+
+#sign_up_page_main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+
+}
+
+.icons_tops {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    margin: 20px;
+
+}
+
+.close {
+    background-color: rgb(54, 148, 60);
+    color: white;
+    border: none;
+    font-size: 100%;
+    font-weight: 700;
+    padding: 5px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.close:hover {
+    background-color: rgb(66, 181, 73);
+}
+
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+#div_main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.h2_div {
+    margin-top: 4rem;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgb(54, 148, 60);
+    padding-left: 1rem;
+    padding-right: 1rem;
+    width: 30rem;
+
+}
+
+#subjectText {
+    text-align: center;
+    color: rgb(48, 48, 48);
+    font-size: 5VW;
+    margin: 1rem;
+
+
+}
+
+.post {
+
+    margin-top: 1rem;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgb(54, 148, 60);
+    padding: 1rem;
+    width: 30rem;
+
+}
+
+.h2_post {
+    font-size: 1rem;
+    margin-top: -10px;
+}
+
+.p_post {
+    white-space: normal;
+}
+
+/* .hr_post {
+    margin-top: 2rem;
+} */
+#hr_pre{
+    margin-top: -0.5rem;
+}
+#buttonSection {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    
+}
+
+#answerInput {
+    padding: 8px;
+    margin-bottom: 5px;
+    border: 1px solid rgb(54, 148, 60);
+    border-radius: 4px;
+    outline: none;
+    width: 28rem;
+    margin-top: 3rem;
+}
+
+#button_post {
+    background-color: rgb(54, 148, 60);
+    color: #fff;
+    padding: 5px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+
+}
+.post_ineer
+{
+    background-color: blue;
+    width: 100px;
+}
+.main2
+{
+    background-color: blue;
+    width: 100px;
+
+}
+
+@media (max-width: 600px) {
+
+    .sign_up_form {
+        padding: 10px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgb(54, 148, 60);
+    }
+
+    .h2_div {
+        margin-top: 5rem;
+        background-color: #f4f4f4;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgb(54, 148, 60);
+        padding-left: 1rem;
+        padding-right: 1rem;
+        width: 15rem;
+
+    }
+
+    .post {
+
+        margin-top: 1rem;
+        background-color: #f4f4f4;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgb(54, 148, 60);
+        padding: 1rem;
+        width: 15rem;
+
+    }
+
+    #answerInput {
+        padding: 8px;
+        margin-bottom: 5px;
+        border: 1px solid rgb(54, 148, 60);
+        border-radius: 4px;
+        outline: none;
+        width: 13rem;
+    }
+
+}

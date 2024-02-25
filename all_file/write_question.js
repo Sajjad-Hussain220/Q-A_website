@@ -18,6 +18,7 @@ const db = getDatabase(app);
 onAuthStateChanged(auth, (user) => {
   if (user) {
     console.log("User is logged in:", user.uid);
+    user.photoURL =user.photoURL
     const submitButton = document.getElementById("Submit_button");
     submitButton.addEventListener("click", () => addpost(user));
   } else {

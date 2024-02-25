@@ -14,8 +14,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-const currentPageName = window.location.pathname.split("/").pop();
-
+var subjectSelects = document.querySelectorAll('.subject_select');
+var serch= document.getElementById('serch');
 const onLoad = () => {
   onAuthStateChanged(auth, (user) => {
     if (user) {
@@ -28,9 +28,11 @@ const onLoad = () => {
       }
   });
 };
-onLoad(); 
-
-
+subjectSelects.forEach((element) => {
+  element.addEventListener('click', onLoad);
+});
+serch.addEventListener('click' ,onLoad)
+onLoad()
 
 window.onscroll = function () {
     // Get the navbar element

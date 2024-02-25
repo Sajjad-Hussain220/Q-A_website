@@ -21,7 +21,7 @@ onAuthStateChanged(auth, (user) => {
     anchorElement = closeButton.querySelector("a");
 
     if (user) {
-        console.log("User is logged in:", user.uid);
+        console.log(user);
         closeButton.addEventListener("click", () => closeButton1(anchorElement));
     } else {
         if (confirm("First login and then write a question")) {

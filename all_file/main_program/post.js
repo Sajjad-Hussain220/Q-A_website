@@ -17,7 +17,20 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 const database = getDatabase(app);
 
-document.addEventListener('DOMContentLoaded', function () {
+
+const onLoad = () => {
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+        } else {
+            alert("Please Login first ");
+
+            window.location.href = "../../index.html";
+        }
+    });
+};
+onLoad();
+
+document && document.addEventListener('DOMContentLoaded', function () {
     // Use the location.search directly
     var queryString = window.location.search;
 
@@ -31,7 +44,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Log or use the subject value as needed
         // console.log(subjectValue);
-
         // Display the subject value in the h2 tag
         var subjectTextElement = document.getElementById('subjectText');
         if (subjectTextElement) {
@@ -48,6 +60,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     // console.log(data);
                     let html = "";
                     const container = document.querySelector('.main_post')
+                    alert("please wait")
+
                     for (const key in data) {
                         var { email, question, subject } = data[key]
 
@@ -62,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function () {
                  ${question}
                </p>
                <div class="answerSection" data-key="${key}" id="answerSection" style="display: none; " >
-               <input type="text" class="answerInput" id="answerInput" placeholder="Your answer" required>
+               <input type="text" class="answerInput" id="answerInput" data-key="${key}" placeholder="Your answer" required>
                <button type="button" class="submitButton" id="button_post" data-key="${key}" >Submit</button></div>
                <hr class="hr_post">
                <div id="buttonSection">
@@ -73,6 +87,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 `
 
                     }
+
                     container.innerHTML = html;
 
                     container.addEventListener('click', function (event) {
@@ -80,42 +95,28 @@ document.addEventListener('DOMContentLoaded', function () {
 
                         if (target.classList.contains('anserw_post1')) {
                             const key = target.getAttribute('data-key');
-                            // console.log("welcom");
+
 
                             var yourDataRef1 = ref(database, 'question/' + `${subject}/` + `${key}/` + 'answer/');
-
                             get(yourDataRef1)
                                 .then(snapshot => {
                                     const data2 = snapshot.val();
-                                    alert("please check answers in console")
-                                    for (const key1 in data2) {
-                                                var { email, answer } = data2[key1];
-                                                console.log(`user : ${email}  \nAnswer : ${answer} \n`, );
-                                    }
-                                    // let html1 = "";
-                                    //  let container1 = document.querySelector(".main2_answer");
-                                 
-                                    //     for (const key in data2) {
-                                    //         var { email, answer } = data2[key];
 
-                                    //         html1 += `
-                                    //             <div class="post_ineer"> 
-                                    //                 <h2 class="h2_post">${email}</h2>
-                                    //                 <hr>
-                                    //                 <p class="p_post">
-                                    //                     ${answer}
-                                    //                 </p>
-                                    //             </div>
-                                    //         `
-                                    //     }
-                                    //     container1.innerHTML = html1;
-                                    // //     // Append the new HTML content to "main2"
-                                       
-                                   
+                                    if (data2) {
+                                        alert("Please check answers in console");
+
+                                        for (const key1 in data2) {
+                                            var { email, answer } = data2[key1];
+                                            console.log(`User: ${email}\nAnswer: ${answer}\n`);
+                                        }
+                                    } else {
+                                        console.log("No Answer available.");
+                                    }
                                 })
                                 .catch(error => {
                                     console.error('Error retrieving data:', error);
                                 });
+
                         }
                     });
 
@@ -147,27 +148,47 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     function update1(event) {
                         const key = event.currentTarget.getAttribute("data-key");
-                        const answerInput = document.querySelectorAll(".answerInput");
-                        const id = Math.floor(Math.random()*100)
-                        console.log(answerInput.value)
+                        const answerInputs = document.querySelectorAll(`.answerInput[data-key="${key}"]`);
 
-                        onAuthStateChanged(auth, (user) => {
-                            if (user) {
-                                update(ref(database, 'question/' + `${subject}/` + `${key}/` + `answer/${id}`), {
-                                    answer: "hi",
-                                    email: user.email,
-                                });
+                        // Create an array to store input values
+                        const inputValues = [];
 
-                                console.log("Answer submitted")
-
-                            } else {
-                                console.log("this answeer is already")
-                            }
+                        // Iterate over the NodeList and get the value of each input element
+                        answerInputs.forEach((input) => {
+                            inputValues.push(input.value);
                         });
 
+                        const hasNonEmptyValue = inputValues.some(value => value.trim() !== '');
 
+                        if (hasNonEmptyValue) {
+                            // Display the values in the console
+                            // console.log('Textbox Values:', inputValues);
+                            const id = Math.floor(Math.random() * 100);
+
+                            onAuthStateChanged(auth, (user) => {
+                                if (user) {
+                                    update(ref(database, 'question/' + `${subject}/` + `${key}/` + `answer/${id}`), {
+                                        answer: inputValues[0],
+                                        email: user.email,
+                                    });
+
+                                    alert("Answer submitted");
+
+                                    // Loop through each input element and set its value to an empty string
+                                    answerInputs.forEach((input) => {
+                                        input.value = "";
+                                    });
+
+                                    const answerSection = document.querySelector(`.answerSection[data-key="${key}"]`);
+                                    answerSection.style.display = (answerSection.style.display === 'block') ? 'none' : 'block';
+                                } else {
+                                    console.log("This answer is already");
+                                }
+                            });
+                        } else {
+                            alert("Please enter at least one value before submitting.");
+                        }
                     }
-
 
 
 
@@ -180,7 +201,7 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log('Element with id "subjectText" not found.');
         }
     } else {
-        console.log('No subject parameter found in the URL.');
+
     }
 
 });
