@@ -12,6 +12,17 @@ body {
     outline: none;
 }
 
+.liked {
+    color: rgb(54, 148, 60);
+    /* Change the color to your preferred liked color */
+}
+
+.disliked {
+    color: red;
+    /* Change the color to your preferred disliked color */
+}
+
+
 #sign_up_page_main {
     display: flex;
     justify-content: center;
@@ -68,6 +79,23 @@ a {
 
 }
 
+.like_dis_div {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+}
+
+.answer_post {
+    margin-top: 1rem;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgb(54, 148, 60);
+    padding: 1rem;
+    width: 20rem;
+
+}
+
 #subjectText {
     text-align: center;
     color: rgb(48, 48, 48);
@@ -86,11 +114,36 @@ a {
     padding: 1rem;
     width: 30rem;
 
+    margin-bottom: 20px;
+}
+
+.h1_post {
+    letter-spacing: 0.5px;
+    font-size: 0.8rem;
+    color: rgb(74, 74, 74);
+    margin: 0px;
+
 }
 
 .h2_post {
-    font-size: 1rem;
-    margin-top: -10px;
+    letter-spacing: 0.5px;
+    font-size: 0.6rem;
+    margin: 0px;
+    color: rgb(74, 74, 74);
+}
+.h1_post_check {
+    letter-spacing: 0.5px;
+    font-size: 0.8rem;
+    color: rgb(74, 74, 74);
+    margin: 0px;
+
+}
+
+.h2_post_check {
+    letter-spacing: 0.5px;
+    font-size: 0.6rem;
+    margin: 0px;
+    color: rgb(74, 74, 74);
 }
 
 .p_post {
@@ -100,14 +153,14 @@ a {
 /* .hr_post {
     margin-top: 2rem;
 } */
-#hr_pre{
+/* #hr_pre{
     margin-top: -0.5rem;
-}
+} */
 #buttonSection {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    
+
 }
 
 #answerInput {
@@ -129,16 +182,48 @@ a {
     cursor: pointer;
 
 }
-.post_ineer
-{
+
+.post_ineer {
     background-color: blue;
     width: 100px;
 }
-.main2
-{
+
+.main2 {
     background-color: blue;
     width: 100px;
 
+}
+
+.post_head_main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.h3_post {
+    font-size: 0.5rem;
+    margin: 0px;
+    color: rgb(74, 74, 74);
+}
+
+.h3_post_check {
+    font-size: 0.5rem;
+    margin: 0px;
+    color: rgb(74, 74, 74);
+}
+
+.post_head {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.post_img1 {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 5px;
 }
 
 @media (max-width: 600px) {
@@ -178,6 +263,61 @@ a {
         border-radius: 4px;
         outline: none;
         width: 13rem;
+    }
+
+
+    .answer_post {
+        margin-top: 1rem;
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgb(54, 148, 60);
+        padding: 1rem;
+        width: 12rem;
+
+    }
+
+
+
+    .post_head_main {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+
+    .post_head {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    .post_img1 {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        margin-right: 5px;
+    }
+
+    .h1_post_check {
+        letter-spacing: 0.5px;
+        font-size: 0.6rem;
+        color: rgb(74, 74, 74);
+        margin: 0px;
+
+    }
+
+    .h2_post_check {
+        letter-spacing: 0.5px;
+        font-size: 0.5rem;
+        margin: 0px;
+        color: rgb(74, 74, 74);
+    }
+
+    .h3_post_check {
+        font-size: 0.5rem;
+        margin: 0px;
+        color: rgb(74, 74, 74);
     }
 
 }

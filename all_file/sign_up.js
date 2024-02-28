@@ -45,8 +45,7 @@ let registerUser = async (evt) => {
                         Name: object.username,
                         email: object.useremail,
                     });
-                    
-                  
+
                     alert("please conform email verification link")
                     window.location.href = "http://127.0.0.1:5500/all_file/logi.html";
                 })

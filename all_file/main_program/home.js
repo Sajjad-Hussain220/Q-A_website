@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
-import { getFirestore } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js";
+import { getFirestore, getDoc, doc, updateDoc  } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js";
 import { getAuth, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js";
 import { getDatabase, ref, get, update, set } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-database.js";
 
@@ -15,10 +15,25 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 const auth = getAuth(app);
+const dp = getFirestore(app);
 
 
 onAuthStateChanged(auth, (user) => {
-  const userProfileImg = document.getElementById("user-profile-img");
+  const userProfileImg = document.getElementById("user-profile-img"); 
+  const userDocRef = doc(dp, "user_information", user.uid);
+  getDoc(userDocRef)
+    .then((docSnapshot) => {
+      if (docSnapshot.exists()) {
+        const userData = docSnapshot.data();
+
+        user.displayName = userData.Name;
+      } else {
+        console.log("Document does not exist");
+      }
+    })
+    .catch((error) => {
+      console.error("Error getting document:", error);
+    });
   if (user) {
     console.log("User is logged in:", user);
     if (user.photoURL) {
@@ -53,7 +68,7 @@ const optionValues = [
   "Arts & Entertainment",
   "Animals & Plants",
   "Engineering & Technology"
-];const shuffledSubjects = shuffleArray(optionValues);
+]; const shuffledSubjects = shuffleArray(optionValues);
 
 // Take the first 10 subjects from the shuffled array
 const selectedSubjects = shuffledSubjects.slice(0, 10);
@@ -118,7 +133,7 @@ for (const subject of selectedSubjects) {
 
           // Create a link element for the arrow
           const link = document.createElement('a');
-          link.href = `./post.html?subject=${encodeURIComponent(subject)}`; 
+          link.href = `./post.html?subject=${encodeURIComponent(subject)}`;
           link.className = 'subject_selection';
           link.innerHTML = `<i class="ri-arrow-up-line Arrow_top_related"></i>`;
 
@@ -131,7 +146,7 @@ for (const subject of selectedSubjects) {
           // Append the questionDiv to the container
           container.appendChild(questionDiv);
 
-      
+
 
           // Increment the counter for displayed questions
           displayedQuestions++;

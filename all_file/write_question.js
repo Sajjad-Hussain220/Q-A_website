@@ -18,13 +18,12 @@ const db = getDatabase(app);
 onAuthStateChanged(auth, (user) => {
   if (user) {
     console.log("User is logged in:", user.uid);
-    user.photoURL =user.photoURL
+    user.photoURL = user.photoURL
     const submitButton = document.getElementById("Submit_button");
     submitButton.addEventListener("click", () => addpost(user));
   } else {
-    if(confirm("first login than write a question"))
-    {
-      window.location.href = "./logi.html" 
+    if (confirm("first login than write a question")) {
+      window.location.href = "./logi.html"
     }
   }
 });
@@ -36,16 +35,31 @@ function addpost(user) {
   const subject = subjectSelect.value;
   const question = textarea.value;
   const email = user.email;
-  const id = Math.floor(Math.random()*100)
+  const id = Math.floor(Math.random() * 1000)
 
+  const currentDate = new Date();
+
+  const options = {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: true,
+  };
+
+  const formattedDate = new Intl.DateTimeFormat('en-US', options).format(currentDate);
+
+  // console.log(`Current date: (${formattedDate})`);
 
   if (subject && question) {
 
-   
-     set(ref(db, 'question/'+ `${subject}/`+ id ), {
+
+    set(ref(db, 'question/' + `${subject}/` + id), {
       subject: subject,
       question: question,
       email: email,
+      date : formattedDate,
     });
     alert("Question submitted successfully!");
     // window.location.href = "./main_program/home.html";
@@ -63,12 +77,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
   onAuthStateChanged(auth, (user) => {
     if (user) {
-  
-   
+
+
       anchorElement.href = "./main_program/home.html";
     } else {
       // User is not logged in
-// alert("User is not logged in");
+      // alert("User is not logged in");
       anchorElement.href = "../index.html";
     }
   });

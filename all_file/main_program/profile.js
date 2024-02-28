@@ -20,16 +20,27 @@ const user_name = document.getElementById("user_name");
 const user_email = document.getElementById("user_email");
 
 onAuthStateChanged(auth, (user) => {
+
     if (user) {
-        console.log("User is logged in:", user);
-        if (user.photoURL) {
-            user_ProfileImg.src = user.photoURL;
-            user_name.value = user.displayName;
-            user_email.value = user.email;
-        }else
-        {
-            user_email.value = user.email;
-        }
+        const userDocRef = doc(dp, "user_information", user.uid);
+
+        getDoc(userDocRef)
+            .then((docSnapshot) => {
+                if (docSnapshot.exists()) {
+                    const userData = docSnapshot.data();
+
+                    user.displayName = userData.Name;
+
+                    user_name.value = user.displayName;
+                    user_email.value = user.email;
+                } else {
+                    console.log("Document does not exist");
+                }
+            })
+            .catch((error) => {
+                console.error("Error getting document:", error);
+            });
+
     } else {
         console.log("User is not logged in");
         user_ProfileImg.src = "../../green_picture.png";
@@ -78,7 +89,7 @@ function updateUserProfile() {
                 .then(() => {
                     console.log("User profile updated successfully");
                     alert("User profile updated successfully");
-                    window.location.href  = "home.html"
+                    window.location.href = "home.html"
                 })
                 .catch((error) => {
                     console.error("Error updating user profile:", error);
