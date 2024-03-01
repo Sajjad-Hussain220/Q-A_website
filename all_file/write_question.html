@@ -25,7 +25,7 @@
                     <a href="#"><i class="ri-refresh-line"></i></a>
                     </i></button>
                 <button class="close" id="closeButton">
-                    <a href="./write_question.html" ><i class="ri-close-fill"></i></a>
+                    <a href="./write_question.html"><i class="ri-close-fill"></i></a>
                     </i></button>
             </div>
             <div id="sign_up_page_main">
@@ -61,8 +61,19 @@
 
                         <div id="textarea">
                             <h3>Ask Your Question:</h2>
-                                <textarea rows="10" class="textarea"
-                                    placeholder="What does console.log function do in JavaScript" required></textarea>
+                                <div class="input-group">
+                                    <img src="../mans_qirls_pic_Artboard 1.png" alt="picture_not_found" id="question_picture" style="position: absolute; width: 100px; height:100px;">
+                                    <textarea rows="10" class="form-control textarea" placeholder="What does console.log function do in JavaScript" required></textarea>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">
+                                            <label for="input_file" id="input_file_lable"><i
+                                                    class="ri-image-line"></i></i></label>
+                                            <input type="file" accept=".jpg, .jpeg, .png" id="input_file">
+                                        </span>
+                                    </div>
+                                </div>
+                                <!-- <textarea rows="10" class="textarea"
+                                    placeholder="What does console.log function do in JavaScript" required></textarea> -->
                         </div>
                         <button type="button" class="button" id="Submit_button">Submit</button>
                     </form>

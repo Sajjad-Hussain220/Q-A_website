@@ -7,9 +7,11 @@ body {
     overflow-x: hidden;
     color: rgb(48, 48, 48);
 }
+
 *:focus {
     outline: none;
 }
+
 #sign_up_page_main {
     display: flex;
     justify-content: center;
@@ -19,22 +21,25 @@ body {
 
 }
 
-.icons_tops{
+.icons_tops {
     position: fixed;
-    top: 10px; 
-    right: 10px; 
+    top: 10px;
+    right: 10px;
     margin: 20px;
-    
+
 }
-.close{background-color: rgb(54, 148, 60);
+
+.close {
+    background-color: rgb(54, 148, 60);
     color: white;
     border: none;
     font-size: 100%;
     font-weight: 700;
-    padding: 5px 8px;   
+    padding: 5px 8px;
     border-radius: 4px;
     cursor: pointer;
 }
+
 .close:hover {
     background-color: rgb(66, 181, 73);
 }
@@ -42,13 +47,14 @@ body {
 .heading_sign_up {
     text-align: center;
 }
-a{
+
+a {
     text-decoration: none;
     color: inherit;
 }
 
 
- 
+
 .sign_up_form {
     background-color: #f4f4f4;
     padding: 20px;
@@ -61,6 +67,7 @@ a{
     display: flex;
     flex-direction: column;
 }
+
 .textarea {
     width: 90%;
     padding: 8px;
@@ -71,13 +78,16 @@ a{
     overflow-x: auto;
     white-space: pre-wrap;
     overflow-y: auto;
-    resize: none; /* Disable resizing */
+    resize: none;
+   
 }
-h3
-{
+
+h3 {
     margin-bottom: 5px;
 }
-.subjectSelect ,.textarea{
+
+.subjectSelect,
+.textarea {
     padding: 8px;
     margin-bottom: 16px;
     border: 1px solid rgb(54, 148, 60);
@@ -100,6 +110,28 @@ h3
 
 }
 
+.input-group {
+    position: relative;
+}
+
+.input-group .ri-image-line {
+    position: absolute;
+    bottom: 30px;
+    right: 15px;
+    cursor: pointer;
+    color: rgb(66, 181, 73);
+    font-size: 20px;
+}
+
+#input_file {
+    display: none;
+}
+#question_picture{
+    display: none;
+}
+
+
+
 @media (max-width: 600px) {
 
     .sign_up_form {
@@ -107,6 +139,6 @@ h3
         border-radius: 8px;
         box-shadow: 0 0 10px rgb(54, 148, 60);
     }
-    
+
 
 }
