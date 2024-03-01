@@ -70,30 +70,33 @@ a {
 
 .textarea {
     width: 90%;
-    padding: 8px;
-    margin-bottom: 16px;
-    border: 1px solid rgb(54, 148, 60);
     border-radius: 4px;
     outline: none;
     overflow-x: auto;
     white-space: pre-wrap;
     overflow-y: auto;
     resize: none;
-   
 }
 
 h3 {
-    margin-bottom: 5px;
+    margin: 10px 0px 10px 0px;
+
 }
 
-.subjectSelect,
+.subjectSelect
+{
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+    border: 1px solid rgb(54, 148, 60);
+}
+
 .textarea {
     padding: 8px;
-    margin-bottom: 16px;
-    border: 1px solid rgb(54, 148, 60);
-
+    border: none;
     border-radius: 4px;
     outline: none;
+    
 }
 
 .sign_up_form button {
@@ -112,12 +115,19 @@ h3 {
 
 .input-group {
     position: relative;
+    padding-top: 16px   ;
+    height: 150%;
+    margin-bottom: 16px;
+    background-color: white;
+    border: 1px solid rgb(54, 148, 60);
+    border-radius: 4px;
+    outline: none;
 }
 
 .input-group .ri-image-line {
     position: absolute;
-    bottom: 30px;
-    right: 15px;
+    bottom: 10px;
+    right: 12px;
     cursor: pointer;
     color: rgb(66, 181, 73);
     font-size: 20px;
@@ -126,10 +136,39 @@ h3 {
 #input_file {
     display: none;
 }
-#question_picture{
+
+.image_div_upload {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+#question_picture1 {
+    display: none;
+    max-width: 100px;
+    max-height: 100px;
+    border-radius: 4px;
+    border: 1px solid rgb(54, 148, 60);
+}
+
+#closeButton_image {
     display: none;
 }
 
+.image_div_upload button {
+    background-color: rgb(54, 148, 60);
+    color: #fff;
+    padding: 3px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.image_div_upload button:hover {
+    background-color: rgb(66, 181, 73);
+
+}
 
 
 @media (max-width: 600px) {

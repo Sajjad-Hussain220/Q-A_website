@@ -33,33 +33,31 @@ onLoad();
 
 
 document && document.addEventListener('DOMContentLoaded', function () {
-    // Use the location.search directly
+
     var queryString = window.location.search;
 
-    // Check if the queryString contains the 'subject' parameter
+
     if (queryString.includes('subject')) {
-        // Create a URLSearchParams object
+
         var urlParams = new URLSearchParams(queryString);
 
-        // Get the value of the 'subject' parameter
+
         var subjectValue = urlParams.get('subject');
 
-        // Log or use the subject value as needed
-        // console.log(subjectValue);
-        // Display the subject value in the h2 tag
+
         var subjectTextElement = document.getElementById('subjectText');
         if (subjectTextElement) {
             subjectTextElement.textContent = subjectValue;
 
-            // Define yourDataRef based on the path in your database
+
             var yourDataRef = ref(database, 'question/' + subjectValue);
 
-            // Query the data for the specified subject 
+
             get(yourDataRef)
                 .then(snapshot => {
-                    // Process the retrieved data
+
                     const data = snapshot.val();
-                    // console.log(data);
+
                     let html = "";
                     const container = document.querySelector('.main_post')
                     alert("please wait")
@@ -71,7 +69,9 @@ document && document.addEventListener('DOMContentLoaded', function () {
                     getDocs(userCollectionRef)
                         .then((querySnapshot) => {
                             for (const key in data) {
-                                var { email, question, subject, date } = data[key];
+                                var { email, question, subject, date, question_image } = data[key];
+
+
 
                                 let isMatched = false;
 
@@ -80,7 +80,7 @@ document && document.addEventListener('DOMContentLoaded', function () {
                                     if (userData.email === email) {
                                         user_name = userData.Name;
                                         user_img = userData.profilePictureURL
-                                        // console.log("Document ID:", doc.id, " => ", userData.profilePictureURL, user_name , user_img);
+
                                         isMatched = true;
                                     }
                                 });
@@ -88,11 +88,6 @@ document && document.addEventListener('DOMContentLoaded', function () {
                                 if (!isMatched) {
                                     console.log("No matching document found for email:", email);
                                 }
-
-                                // Now you can use user_name here
-
-                                // console.log(email, user_name, user_img)
-
                                 html += `
                                 <div class="post">
                                 <div class="post_head_main">
@@ -106,8 +101,8 @@ document && document.addEventListener('DOMContentLoaded', function () {
                                 </div>
                                 
                                 <hr id="hr_pre">
+                                <img src="${question_image}" alt="picture_not_found" id="question_picture">
                                 <p class="p_post">
-               
                                      ${question}
                                  </p>
                                 <div class="answerSection" data-key="${key}" id="answerSection" style="display: none; " >
@@ -123,9 +118,19 @@ document && document.addEventListener('DOMContentLoaded', function () {
                                 </div>`
 
                             }
-
+                            
                             container.innerHTML = html;
+                            var questionPictures = container.querySelectorAll('#question_picture');
 
+                            questionPictures.forEach((picture) => {
+                                var srcValue = picture.getAttribute('src');
+                                if (srcValue != "")
+                                {
+
+                                    picture.style.display= "block";
+                                }
+                            });
+                            
                             container.addEventListener('click', function (event) {
                                 const target = event.target;
 
@@ -165,6 +170,7 @@ document && document.addEventListener('DOMContentLoaded', function () {
                         .catch(error => {
                             console.error('Error retrieving data:', error);
                         });
+
                 });
         }
     } else {

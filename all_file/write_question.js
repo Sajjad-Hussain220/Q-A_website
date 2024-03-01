@@ -28,14 +28,14 @@ onAuthStateChanged(auth, (user) => {
   }
 });
 
+const subjectSelect = document.querySelector(".subjectSelect");
+const textarea = document.querySelector(".textarea");
 function addpost(user) {
-  const subjectSelect = document.querySelector(".subjectSelect");
-  const textarea = document.querySelector(".textarea");
 
   const subject = subjectSelect.value;
   const question = textarea.value;
   const email = user.email;
-  const id = Math.floor(Math.random() * 1000)
+  const id = Math.floor(Math.random() * 10000);
 
   const currentDate = new Date();
 
@@ -50,24 +50,54 @@ function addpost(user) {
 
   const formattedDate = new Intl.DateTimeFormat('en-US', options).format(currentDate);
 
-  // console.log(`Current date: (${formattedDate})`);
-
   if (subject && question) {
+    var selectedFile = input_file.files[0];
 
+    if (selectedFile) {
+      const reader = new FileReader();
 
-    set(ref(db, 'question/' + `${subject}/` + id), {
-      subject: subject,
-      question: question,
-      email: email,
-      date : formattedDate,
-    });
-    alert("Question submitted successfully!");
-    // window.location.href = "./main_program/home.html";
-    subjectSelect.value = "";
-    textarea.value = "";
+      reader.onload = function (e) {
+        const imageSrc = e.target.result;
+
+        // Save imageSrc value in the database
+        saveToDatabase(subject, id, subject, question, email, formattedDate, imageSrc);
+      };
+
+      reader.readAsDataURL(selectedFile);
+    } else {
+      // If no image selected, save without an image
+      saveToDatabase(subject, id, subject, question, email, formattedDate, "");
+    }
   } else {
     alert("Please select a subject and provide a question");
   }
+}
+
+function saveToDatabase(subject, id, subject1, question, email, formattedDate, imageSrc) {
+  // Assuming your database structure supports this path
+  set(ref(db, 'question/' + `${subject1}/` + id), {
+    subject: subject,
+    question: question,
+    email: email,
+    date: formattedDate,
+    question_image: imageSrc,
+  })
+  .then(() => {
+    alert("Question submitted successfully!");
+    subjectSelect.value = "";
+    textarea.value = "";
+    selectedFile = "";
+    closeButton_image.style.display = "none";
+    question_picture1.style.display = "none";
+    selectedFile = null;
+    input_file.value = null;
+    setTimeout(() => {
+      window.location.href = "./main_program/home.html";
+    }, 1000);
+  })
+  .catch((error) => {
+    console.error("Error saving question to database:", error);
+  });
 }
 
 
@@ -77,14 +107,46 @@ document.addEventListener("DOMContentLoaded", function () {
 
   onAuthStateChanged(auth, (user) => {
     if (user) {
-
-
       anchorElement.href = "./main_program/home.html";
     } else {
-      // User is not logged in
-      // alert("User is not logged in");
       anchorElement.href = "../index.html";
     }
   });
+});
+
+
+var input_file = document.getElementById("input_file");
+const closeButton_image = document.getElementById("closeButton_image");
+let selectedFile = null;
+
+closeButton_image.addEventListener("click", function () {
+
+  closeButton_image.style.display = "none"
+  question_picture1.style.display = "none"
+  selectedFile = null;
+
+  input_file.value = null;
+})
+
+var question_picture1 = document.getElementById("question_picture1");
+question_picture1.src = "";
+
+input_file.addEventListener("change", function () {
+  selectedFile = input_file.files[0];
+
+  if (selectedFile) {
+    const reader = new FileReader();
+
+    reader.onload = function (e) {
+      question_picture1.src = e.target.result;
+      console.log(question_picture1.src);
+    };
+
+    closeButton_image.style.display = "block";
+    question_picture1.style.display = "block";
+
+    reader.readAsDataURL(selectedFile);
+    console.log(selectedFile);
+  }
 });
 

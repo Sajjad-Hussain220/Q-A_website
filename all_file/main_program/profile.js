@@ -132,8 +132,7 @@ function updateUserProfile() {
                 updateProfile(user, profileUpdates)
             ])
             .then(() => {
-                console.log("Firestore document and user profile updated successfully");
-                alert("User profile and Firestore document updated successfully");
+                alert("User profile updated successfully");
 
                 // Add a delay before redirecting (e.g., 1000 milliseconds)
                 setTimeout(() => {

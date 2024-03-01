@@ -29,7 +29,6 @@
                     </i></button>
             </div>
             <div id="sign_up_page_main">
-
                 <div class="sign_up_form">
                     <form id="login_form">
                         <h2 class="heading_sign_up">Write a Question</h2>
@@ -62,12 +61,19 @@
                         <div id="textarea">
                             <h3>Ask Your Question:</h2>
                                 <div class="input-group">
-                                    <img src="../mans_qirls_pic_Artboard 1.png" alt="picture_not_found" id="question_picture" style="position: absolute; width: 100px; height:100px;">
-                                    <textarea rows="10" class="form-control textarea" placeholder="What does console.log function do in JavaScript" required></textarea>
+                                    <div class="image_div_upload">
+                                        <img src alt="picture_not_found" id="question_picture1">
+                                        <button  class="close1" id="closeButton_image">
+                                           <i class="ri-close-fill close_img"></i>
+                                            </i></button>
+                                    </div>
+                                    <textarea rows="5" class="form-control textarea"
+                                        placeholder="What does console.log function do in JavaScript ?"
+                                        required></textarea>
                                     <div class="input-group-append">
-                                        <span class="input-group-text">
-                                            <label for="input_file" id="input_file_lable"><i
-                                                    class="ri-image-line"></i></i></label>
+                                        <span class="input-group-text" id="input_file_span">
+                                            <label for="input_file" id="input_file_lable"><i class="ri-image-line"
+                                                    id="input_file_icon"></i></label>
                                             <input type="file" accept=".jpg, .jpeg, .png" id="input_file">
                                         </span>
                                     </div>
