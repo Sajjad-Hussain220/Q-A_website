@@ -67,7 +67,8 @@ const optionValues = [
   "Law & Government",
   "Arts & Entertainment",
   "Animals & Plants",
-  "Engineering & Technology"
+  "Engineering & Technology",
+  "Others"
 ]; const shuffledSubjects = shuffleArray(optionValues);
 
 // Take the first 10 subjects from the shuffled array

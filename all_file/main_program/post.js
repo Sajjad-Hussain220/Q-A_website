@@ -30,8 +30,6 @@ const onLoad = () => {
 };
 onLoad();
 
-
-
 document && document.addEventListener('DOMContentLoaded', function () {
 
     var queryString = window.location.search;
@@ -57,38 +55,38 @@ document && document.addEventListener('DOMContentLoaded', function () {
                 .then(snapshot => {
 
                     const data = snapshot.val();
-
-                    let html = "";
-                    const container = document.querySelector('.main_post')
-                    alert("please wait")
-
-
-                    const userCollectionRef = collection(db, "user_information");
-                    let user_name = "Unknown";
-                    let user_img = ""
-                    getDocs(userCollectionRef)
-                        .then((querySnapshot) => {
-                            for (const key in data) {
-                                var { email, question, subject, date, question_image } = data[key];
+                    if (data) {
+                        let html = "";
+                        const container = document.querySelector('.main_post')
+                        alert("please wait")
 
 
+                        const userCollectionRef = collection(db, "user_information");
+                        let user_name = "Unknown";
+                        let user_img = ""
+                        getDocs(userCollectionRef)
+                            .then((querySnapshot) => {
+                                for (const key in data) {
+                                    var { email, question, subject, date, question_image } = data[key];
 
-                                let isMatched = false;
 
-                                querySnapshot.forEach((doc) => {
-                                    const userData = doc.data();
-                                    if (userData.email === email) {
-                                        user_name = userData.Name;
-                                        user_img = userData.profilePictureURL
 
-                                        isMatched = true;
+                                    let isMatched = false;
+
+                                    querySnapshot.forEach((doc) => {
+                                        const userData = doc.data();
+                                        if (userData.email === email) {
+                                            user_name = userData.Name;
+                                            user_img = userData.profilePictureURL
+
+                                            isMatched = true;
+                                        }
+                                    });
+
+                                    if (!isMatched) {
+                                        console.log("No matching document found for email:", email);
                                     }
-                                });
-
-                                if (!isMatched) {
-                                    console.log("No matching document found for email:", email);
-                                }
-                                html += `
+                                    html += `
                                 <div class="post">
                                 <div class="post_head_main">
                                 <div class="post_head">
@@ -117,63 +115,65 @@ document && document.addEventListener('DOMContentLoaded', function () {
                                  </div>
                                 </div>`
 
-                            }
-                            
-                            container.innerHTML = html;
-                            var questionPictures = container.querySelectorAll('#question_picture');
-
-                            questionPictures.forEach((picture) => {
-                                var srcValue = picture.getAttribute('src');
-                                if (srcValue != "")
-                                {
-
-                                    picture.style.display= "block";
                                 }
-                            });
-                            
-                            container.addEventListener('click', function (event) {
-                                const target = event.target;
 
-                                if (target.classList.contains('anserw_post1')) {
-                                    const key = target.getAttribute('data-key');
-                                    fetchAndDisplayAnswers(subjectValue, key);
-                                }
-                            });
+                                container.innerHTML = html;
+                                var questionPictures = container.querySelectorAll('#question_picture');
 
-
-                            container.addEventListener('click', function (event) {
-                                const target = event.target;
-
-                                if (target.classList.contains('anserw_post')) {
-                                    const key = target.getAttribute('data-key');
-                                    const answerSection = document.querySelector(`.answerSection[data-key="${key}"]`);
-                                    const checkAnswerDiv = document.querySelector(`.check_answer[data-key="${key}"]`);
-                                    answerSection.style.display = (answerSection.style.display === 'none') ? 'block' : 'none';
-                                    checkAnswerDiv.style.display = 'none';
-
-                                } else if (target.classList.contains('submitButton')) {
-                                    const key = target.closest('.post').querySelector('.anserw_post').getAttribute('data-key');
-
-                                }
-                            });
-
-
-                            const buttons_answer = document.querySelectorAll(".submitButton");
-                            buttons_answer.forEach((button) => {
-                                button.addEventListener("click", function (event) {
-                                    update1(event, subjectValue);
+                                questionPictures.forEach((picture) => {
+                                    var srcValue = picture.getAttribute('src');
+                                    if (srcValue != "") {
+                                        picture.style.display = "block";
+                                    }
                                 });
+
+                                container.addEventListener('click', function (event) {
+                                    const target = event.target;
+
+                                    if (target.classList.contains('anserw_post1')) {
+                                        const key = target.getAttribute('data-key');
+                                        fetchAndDisplayAnswers(subjectValue, key);
+                                    }
+                                });
+
+
+                                container.addEventListener('click', function (event) {
+                                    const target = event.target;
+
+                                    if (target.classList.contains('anserw_post')) {
+                                        const key = target.getAttribute('data-key');
+                                        const answerSection = document.querySelector(`.answerSection[data-key="${key}"]`);
+                                        const checkAnswerDiv = document.querySelector(`.check_answer[data-key="${key}"]`);
+                                        answerSection.style.display = (answerSection.style.display === 'none') ? 'block' : 'none';
+                                        checkAnswerDiv.style.display = 'none';
+
+                                    } else if (target.classList.contains('submitButton')) {
+                                        const key = target.closest('.post').querySelector('.anserw_post').getAttribute('data-key');
+
+                                    }
+                                });
+
+
+                                const buttons_answer = document.querySelectorAll(".submitButton");
+                                buttons_answer.forEach((button) => {
+                                    button.addEventListener("click", function (event) {
+                                        update1(event, subjectValue);
+                                    });
+                                });
+
+                            })
+                            .catch(error => {
+                                console.error('Error retrieving data:', error);
                             });
+                    } else {
+                        alert("NO Question available")
 
-                        })
-
-                        .catch(error => {
-                            console.error('Error retrieving data:', error);
-                        });
+                    }
 
                 });
         }
     } else {
+
 
     }
 
@@ -196,7 +196,7 @@ function update1(event, subject) {
     if (hasNonEmptyValue) {
         // Display the values in the console
         // console.log('Textbox Values:', inputValues);
-        const id = Math.floor(Math.random() * 1000);
+        const id = Math.floor(Math.random() * 10000);
 
         const currentDate = new Date();
 
@@ -253,12 +253,12 @@ function fetchAndDisplayAnswers(subject, key) {
 
                 getDocs(userCollectionRef)
                     .then((querySnapshot) => {
-                        let likes = 0, dislikes = 0;
 
                         for (var key1 in data2) {
                             (function (key1) {
                                 const { email, answer, date } = data2[key1];
                                 console.log(key1)
+                                let likes = 0, dislikes = 0;
 
                                 const yourDataRef2 = ref(database, `question/${subject}/${key}/answer/${key1}/`);
 
@@ -270,10 +270,50 @@ function fetchAndDisplayAnswers(subject, key) {
                                         const answerPost = document.querySelector(`.answer_post[data-key="${key1}"]`);
                                         const dislikeCount = answerPost.querySelector(".dislike_count");
                                         const likesCount = answerPost.querySelector(".likes_count");
+                                        const likeIcon = answerPost.querySelector(".likeIcon");
+                                        const dislikeIcon = answerPost.querySelector(".dislikeIcon");
+
                                         console.log(key1)
+
+                                        var like_ref = ref(database, `question/${subject}/${key}/answer/${key1}/like`);
+                                        var dislike_ref = ref(database, `question/${subject}/${key}/answer/${key1}/dislike`);
+                                        
+                                        // Combine the logic for both like and dislike
+                                        Promise.all([get(like_ref), get(dislike_ref)])
+                                            .then(([likeSnapshot, dislikeSnapshot]) => {
+                                                const likeData = likeSnapshot.val();
+                                                const dislikeData = dislikeSnapshot.val();
+                                        
+                                                if (user) {
+                                                    if (likeData && likeData.like_email === user.email) {
+                                                        likeIcon.classList.toggle('liked');
+                                                        dislikeIcon.classList.remove('disliked');
+                                                        console.log("abc")
+                                                    }else
+                                                    if (dislikeData && dislikeData.dislike_email === user.email) {
+                                                        dislikeIcon.classList.toggle('disliked');
+                                                        likeIcon.classList.remove('liked');
+                                                        console.log("edf")
+                                                    }else
+                                                    {  likeIcon.classList.remove('liked');
+                                                    dislikeIcon.classList.remove('disliked');
+                                                    console.log("no")
+                                                    }
+                                        
+                                                    // Check for dislike
+                                                    
+                                                }
+                                            })
+                                            .catch((error) => {
+                                                console.error('Error retrieving data:', error);
+                                            });
+                                        
+                                    
+                                    
 
                                         likes = data3.likes;
                                         dislikes = data3.unlikes;
+                                        
                                         likesCount.textContent = likes;
                                         dislikeCount.textContent = dislikes;
                                     })
@@ -324,39 +364,12 @@ function fetchAndDisplayAnswers(subject, key) {
                                     </div>
                                 </div>
                             </div>`;
-
-                                var like_ref = ref(database, `question/${subject}/${key}/answer/${key1}/like`);
-                                var dislike_ref = ref(database, `question/${subject}/${key}/answer/${key1}/dislike`);
-                                const user = getAuth().currentUser;
-
-                                get(like_ref)
-                                    .then((snapshot) => {
-                                        const data2 = snapshot.val();
-                                        if (user && data2 && data2.like_email === user.email) {
-                                            const likeIcon = document.querySelector(".likeIcon");
-                                            likeIcon.classList.toggle('liked');
-                                        }
-                                    })
-                                    .catch((error) => {
-                                        console.error('Error retrieving dislike data:', error);
-                                    });
-                                get(dislike_ref)
-                                    .then((snapshot) => {
-                                        const data2 = snapshot.val();
-                                        if (user && data2 && data2.dislike_email === user.email) {
-                                            const likeIcon = document.querySelector(".dislikeIcon");
-                                            likeIcon.classList.toggle('disliked');
-                                        }
-                                    })
-                                    .catch((error) => {
-                                        console.error('Error retrieving dislike data:', error);
-                                    });
                             })(key1);
                         }
 
-                        // Append the generated HTML inside the check_answer div
+
                         checkAnswerDiv.innerHTML = html1;
-                        // Show the check_answer div
+
                         if (checkAnswerDiv.style.display === 'none') {
                             checkAnswerDiv.style.display = 'flex';
                             checkAnswerDiv.style.justifyContent = 'center';
@@ -368,22 +381,26 @@ function fetchAndDisplayAnswers(subject, key) {
 
                         const answerPosts = document.querySelectorAll(`.answer_post`);
                         const user = getAuth().currentUser;
-                        // Optionally, hide the answerSection
                         answerSection.style.display = 'none';
 
                         answerPosts.forEach((answerPost) => {
+                            let like_current = 0
+                            let dislike_current = 0
+                            let key12 = answerPost.getAttribute("data-key");
                             const likeIcon = answerPost.querySelector(".likeIcon");
                             const dislikeIcon = answerPost.querySelector(".dislikeIcon");
                             const likesCount = answerPost.querySelector(".likes_count");
                             const dislikeCount = answerPost.querySelector(".dislike_count");
-                            let key12 = answerPost.getAttribute("data-key");
 
                             var like_ref = ref(database, `question/${subject}/${key}/answer/${key12}/like`);
                             var dislike_ref = ref(database, `question/${subject}/${key}/answer/${key12}/dislike`);
+
                             likeIcon.addEventListener("click", function () {
                                 if (likeIcon.classList.contains('liked')) {
-                                    likes--;
+                                    like_current--;
                                     console.log("likes--")
+                                    console.log(like_current)
+                                    console.log(dislike_current)
 
                                     get(like_ref)
                                         .then((snapshot) => {
@@ -397,15 +414,19 @@ function fetchAndDisplayAnswers(subject, key) {
                                         });
 
                                 } else {
-                                    likes++;
+                                    like_current++;
                                     console.log("likes++")
+                                    console.log(like_current)
+                                    console.log(dislike_current)
                                     set(like_ref, {
                                         like_email: `${user.email}`
                                     });
 
                                     if (dislikeIcon.classList.contains('disliked')) {
-                                        dislikes--;
+                                        dislike_current--;
                                         console.log("dislikes-z1-")
+                                        console.log(like_current)
+                                        console.log(dislike_current)
 
                                         get(dislike_ref)
                                             .then((snapshot) => {
@@ -423,21 +444,26 @@ function fetchAndDisplayAnswers(subject, key) {
                                 likeIcon.classList.toggle('liked');
                                 dislikeIcon.classList.remove('disliked');
 
-                                likesCount.textContent = likes;
-                                dislikeCount.textContent = dislikes;
+                                likesCount.textContent = like_current;
+                                dislikeCount.textContent = dislike_current;
 
                                 update(ref(database, `question/${subject}/${key}/answer/${key12}`), {
-                                    likes: likes,
-                                    unlikes: dislikes
+                                    likes: like_current,
+                                    unlikes: dislike_current
                                 });
 
 
                             });
 
+
+
+
                             dislikeIcon.addEventListener("click", function () {
                                 if (dislikeIcon.classList.contains('disliked')) {
-                                    dislikes--;
+                                    dislike_current--;
                                     console.log("dislikes--")
+                                    console.log(like_current)
+                                    console.log(dislike_current)
                                     get(dislike_ref)
                                         .then((snapshot) => {
                                             const data2 = snapshot.val();
@@ -449,16 +475,20 @@ function fetchAndDisplayAnswers(subject, key) {
                                             console.error('Error retrieving dislike data:', error);
                                         });
                                 } else {
-                                    dislikes++;
+                                    dislike_current++;
                                     console.log("dislikes++")
+                                    console.log(like_current)
+                                    console.log(dislike_current)
                                     set(dislike_ref, {
                                         dislike_email: `${user.email}`
                                     });
 
 
                                     if (likeIcon.classList.contains('liked')) {
-                                        likes--;
+                                        like_current--;
                                         console.log("likes-z1-")
+                                        console.log(like_current)
+                                        console.log(dislike_current)
                                         get(like_ref)
                                             .then((snapshot) => {
                                                 const data2 = snapshot.val();
@@ -471,21 +501,18 @@ function fetchAndDisplayAnswers(subject, key) {
                                             });
                                     }
                                 }
-
                                 dislikeIcon.classList.toggle('disliked');
                                 likeIcon.classList.remove('liked');
 
-                                likesCount.textContent = likes;
-                                dislikeCount.textContent = dislikes;
+
+                                likesCount.textContent = like_current;
+                                dislikeCount.textContent = dislike_current;
 
                                 update(ref(database, `question/${subject}/${key}/answer/${key12}`), {
-                                    likes: likes,
-                                    unlikes: dislikes
+                                    likes: like_current,
+                                    unlikes: dislike_current
                                 });
-
-
-
-
+                                console.log(key12)
                             });
                         });
                     })
@@ -501,15 +528,3 @@ function fetchAndDisplayAnswers(subject, key) {
         });
 }
 
-// const dislikeRef = ref(database, `question/${subject}/${key}/answer/${key1}/dislike`);
-//                                     get(dislikeRef)
-//                                         .then((snapshot) => {
-//                                             const data2 = snapshot.val();
-//                                             if (user && data2 && data2.like_email === user.email) {
-//                                                 // If the user has liked, remove the like_email
-//                                                 update(dislikeRef, { like_email: null });
-//                                             }
-//                                         })
-//                                         .catch((error) => {
-//                                             console.error('Error retrieving dislike data:', error);
-//                                         });
