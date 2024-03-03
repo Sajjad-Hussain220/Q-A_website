@@ -7,9 +7,11 @@ body {
     overflow-x: hidden;
 
 }
+
 *:focus {
     outline: none;
 }
+
 #nav {
     background-color: rgb(48, 48, 48);
     width: 100vw;
@@ -34,23 +36,23 @@ body {
     display: none;
 }
 
-#nave_button
-{
+#nave_button {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-right: 4vw;
     gap: 1vw;
-    
+
 }
-.serach_nav
-{
-    display:none ;
+
+.serach_nav {
+    display: none;
 }
-.write_nav_logo
-{
+
+.write_nav_logo {
     padding-right: 5px;
 }
+
 .login {
 
     background-color: rgb(54, 148, 60);
@@ -72,11 +74,13 @@ a {
     text-decoration: none;
     color: inherit;
 }
+
 /* Add these styles to your existing CSS */
 
 .user-profile {
     position: relative;
-    margin-left: 2px; /* Adjust as needed */
+    margin-left: 2px;
+    /* Adjust as needed */
     cursor: pointer;
 }
 
@@ -115,26 +119,27 @@ a {
 }
 
 .profile-dropdown a:hover {
-    background-color:rgb(66, 181, 73);
+    background-color: rgb(66, 181, 73);
 }
 
-/* Improve the styling of the Profile and Logout links */
+
 .profile-dropdown a:nth-child(2) {
-    color: #d9534f; /* Change to a color that represents logout */
-    border-top: 1px solid #ccc; /* Add a border between Profile and Logout */
+    color: #d9534f;
+    border-top: 1px solid #ccc;
 }
 
 .profile-dropdown a:last-child {
-    border-radius: 0 0 4px 4px; /* Rounded corners at the bottom */
+    border-radius: 0 0 4px 4px;
 }
-.serach_nav
-{
-    display:none ;
+
+.serach_nav {
+    display: none;
 }
-.write_nav_logo
-{
+
+.write_nav_logo {
     padding-right: 5px;
 }
+
 .login {
 
     background-color: rgb(54, 148, 60);
@@ -250,16 +255,18 @@ a {
 
 
 }
-.div_qu
-{
+
+.div_qu {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    
-}.Arrow_top_related
-{
+
+}
+
+.Arrow_top_related {
     margin-right: 1rem;
 }
+
 .subject_selection {
     color: inherit;
 }
@@ -286,7 +293,8 @@ a {
     height: 55%;
     object-fit: cover;
     margin: auto;
-    display: block; /* This ensures that margin: auto works */
+    display: block;
+    /* This ensures that margin: auto works */
 }
 
 
@@ -378,6 +386,35 @@ a {
     text-align: center;
 }
 
+#suggestionsDropdown_main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: -55px;
+}
+
+#suggestionsDropdown {
+    border-bottom: 1px solid rgb(54, 148, 60);
+    border-left: 1px solid rgb(54, 148, 60);
+    border-right: 1px solid rgb(54, 148, 60);
+    display: none;
+    width: 50vw;
+    line-height: 25px;
+    border-radius: 0px 0px 4px 4px;
+    padding: 5px;
+}
+
+#suggestionsDropdown div {
+    border-top: 1px solid rgb(54, 148, 60);
+    text-align: left;
+    padding: 8px;
+    cursor: pointer;
+}
+
+#suggestionsDropdown div:hover {
+    background-color: #e5e5e5;
+}
+
 @media (max-width: 600px) {
     body {
         margin: 0;
@@ -390,7 +427,7 @@ a {
         position: fixed;
         top: 0;
     }
-   
+
     .logo_Web {
         display: none;
 
@@ -403,10 +440,10 @@ a {
 
     }
 
-    #nave_button{
+    #nave_button {
         margin-right: 8vw;
     }
-    
+
     #your_ques {
         margin-top: 70px;
     }
@@ -421,6 +458,12 @@ a {
 
     .question_input {
         width: 60vw;
+    }
+
+    #suggestionsDropdown {
+
+        width: 60vw;
+
     }
 
     #log-sign {
@@ -439,11 +482,12 @@ a {
         margin-left: 0VW;
         margin-top: -5vw;
     }
-    .tranding_question_container
-    {
-      
-        margin: 20px 0px 20px 0px; 
+
+    .tranding_question_container {
+
+        margin: 20px 20px 20px 20px;
     }
+
     .company_logo {
         width: 20rem;
         margin-left: -2vw;

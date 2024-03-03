@@ -126,6 +126,34 @@ a{
 .question_input:focus {
     outline: none;
 }
+
+#suggestionsDropdown_main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#suggestionsDropdown {
+    
+    border: 1px solid rgb(54, 148, 60);
+    display: none;
+    width: 50vw;
+    line-height: 25px;
+    border-radius:  4px;
+    padding: 5px;
+    margin-top: 5px;
+}
+
+#suggestionsDropdown div {
+    border-top : 1px solid rgb(54, 148, 60);
+    text-align: left;
+    padding: 8px;
+    cursor: pointer;
+}
+
+#suggestionsDropdown div:hover {
+    background-color: #e5e5e5;
+}
 @media (max-width: 600px) {
 
     .sign_up_form {

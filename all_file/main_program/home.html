@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@200;300;400;500;600&display=swap"
         rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet" />
-    <!-- <link rel="icon" href="favicon.png" type="image"> -->
+    <link rel="icon" href="favicon.png" type="image">
     <link rel="stylesheet" href="home.css">
 </head>
 
@@ -44,9 +44,15 @@
         <div id="your_ques">
             <h2 class="your_ques_heading">What is your question ?</h2>
             <div id="your_ques_input">
-                <input type="text" class="question_input" id="question_input" placeholder="Type your question...">
+                <input type="text" class="question_input" id="question_input" placeholder="Type your question..." required autocomplete="off">
                 <button id="search_button" class="serch"><i class="ri-search-line"></i></button>
             </div>
+            <div id="suggestionsDropdown_main">
+                <div id="suggestionsDropdown">
+                
+                </div>
+            </div>
+
         </div>
 
         <h3 class="about_question">About question</h3>
@@ -232,20 +238,7 @@
     </div>
     <script type="module" src="./home.js"></script>
     <script type="module" src="./post.js"></script>
-    <script>
-        const question_input = document.getElementById("question_input");
-        const searchButton = document.getElementById("search_button");
 
-        searchButton && searchButton.addEventListener("click", function () {
-            const inputValue = question_input.value.trim();  // Trim removes leading and trailing spaces
-
-            if (inputValue === "") {
-                alert("Please input search value.");
-            } else {
-                window.location.href = `searching.html?query=${encodeURIComponent(inputValue)}`;
-            }
-        });
-    </script>
 
 
 </body>

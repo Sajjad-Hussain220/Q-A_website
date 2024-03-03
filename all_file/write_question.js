@@ -30,6 +30,7 @@ onAuthStateChanged(auth, (user) => {
 
 const subjectSelect = document.querySelector(".subjectSelect");
 const textarea = document.querySelector(".textarea");
+
 function addpost(user) {
 
   const subject = subjectSelect.value;
@@ -75,6 +76,16 @@ function addpost(user) {
 
 function saveToDatabase(subject, id, subject1, question, email, formattedDate, imageSrc) {
   // Assuming your database structure supports this path
+  const user = getAuth().currentUser;
+  set(ref(db, 'question_searching/' + question), {
+    subject: subject,
+    question: question,
+    email: email,
+    date: formattedDate,
+    question_image: imageSrc,
+    id: id,
+    uid: user.uid
+  })
   set(ref(db, 'question/' + `${subject1}/` + id), {
     subject: subject,
     question: question,
@@ -82,22 +93,22 @@ function saveToDatabase(subject, id, subject1, question, email, formattedDate, i
     date: formattedDate,
     question_image: imageSrc,
   })
-  .then(() => {
-    alert("Question submitted successfully!");
-    subjectSelect.value = "";
-    textarea.value = "";
-    selectedFile = "";
-    closeButton_image.style.display = "none";
-    question_picture1.style.display = "none";
-    selectedFile = null;
-    input_file.value = null;
-    setTimeout(() => {
-      window.location.href = "./main_program/home.html";
-    }, 1000);
-  })
-  .catch((error) => {
-    console.error("Error saving question to database:", error);
-  });
+    .then(() => {
+      alert("Question submitted successfully!");
+      subjectSelect.value = "";
+      textarea.value = "";
+      selectedFile = "";
+      closeButton_image.style.display = "none";
+      question_picture1.style.display = "none";
+      selectedFile = null;
+      input_file.value = null;
+      setTimeout(() => {
+        window.location.href = "./main_program/home.html";
+      }, 1000);
+    })
+    .catch((error) => {
+      console.error("Error saving question to database:", error);
+    });
 }
 
 

@@ -194,8 +194,7 @@ function update1(event, subject) {
     const hasNonEmptyValue = inputValues.some(value => value.trim() !== '');
 
     if (hasNonEmptyValue) {
-        // Display the values in the console
-        // console.log('Textbox Values:', inputValues);
+
         const id = Math.floor(Math.random() * 10000);
 
         const currentDate = new Date();
@@ -254,18 +253,18 @@ function fetchAndDisplayAnswers(subject, key) {
                 getDocs(userCollectionRef)
                     .then((querySnapshot) => {
 
+                        let likes = 0, dislikes = 0;
                         for (var key1 in data2) {
                             (function (key1) {
                                 const { email, answer, date } = data2[key1];
                                 console.log(key1)
-                                let likes = 0, dislikes = 0;
 
                                 const yourDataRef2 = ref(database, `question/${subject}/${key}/answer/${key1}/`);
 
                                 get(yourDataRef2)
                                     .then((snapshot) => {
                                         const data3 = snapshot.val();
-                                        console.log(data3);
+                                        // console.log(data3);
 
                                         const answerPost = document.querySelector(`.answer_post[data-key="${key1}"]`);
                                         const dislikeCount = answerPost.querySelector(".dislike_count");
@@ -273,47 +272,47 @@ function fetchAndDisplayAnswers(subject, key) {
                                         const likeIcon = answerPost.querySelector(".likeIcon");
                                         const dislikeIcon = answerPost.querySelector(".dislikeIcon");
 
-                                        console.log(key1)
+                                        // console.log(key1)
 
                                         var like_ref = ref(database, `question/${subject}/${key}/answer/${key1}/like`);
                                         var dislike_ref = ref(database, `question/${subject}/${key}/answer/${key1}/dislike`);
-                                        
+
                                         // Combine the logic for both like and dislike
                                         Promise.all([get(like_ref), get(dislike_ref)])
                                             .then(([likeSnapshot, dislikeSnapshot]) => {
                                                 const likeData = likeSnapshot.val();
                                                 const dislikeData = dislikeSnapshot.val();
-                                        
+
                                                 if (user) {
                                                     if (likeData && likeData.like_email === user.email) {
                                                         likeIcon.classList.toggle('liked');
                                                         dislikeIcon.classList.remove('disliked');
                                                         console.log("abc")
-                                                    }else
-                                                    if (dislikeData && dislikeData.dislike_email === user.email) {
-                                                        dislikeIcon.classList.toggle('disliked');
-                                                        likeIcon.classList.remove('liked');
-                                                        console.log("edf")
-                                                    }else
-                                                    {  likeIcon.classList.remove('liked');
-                                                    dislikeIcon.classList.remove('disliked');
-                                                    console.log("no")
-                                                    }
-                                        
+                                                    } else
+                                                        if (dislikeData && dislikeData.dislike_email === user.email) {
+                                                            dislikeIcon.classList.toggle('disliked');
+                                                            likeIcon.classList.remove('liked');
+                                                            console.log("edf")
+                                                        } else {
+                                                            likeIcon.classList.remove('liked');
+                                                            dislikeIcon.classList.remove('disliked');
+                                                            console.log("no")
+                                                        }
+
                                                     // Check for dislike
-                                                    
+
                                                 }
                                             })
                                             .catch((error) => {
                                                 console.error('Error retrieving data:', error);
                                             });
-                                        
-                                    
-                                    
+
+
+
 
                                         likes = data3.likes;
                                         dislikes = data3.unlikes;
-                                        
+
                                         likesCount.textContent = likes;
                                         dislikeCount.textContent = dislikes;
                                     })
@@ -384,8 +383,7 @@ function fetchAndDisplayAnswers(subject, key) {
                         answerSection.style.display = 'none';
 
                         answerPosts.forEach((answerPost) => {
-                            let like_current = 0
-                            let dislike_current = 0
+
                             let key12 = answerPost.getAttribute("data-key");
                             const likeIcon = answerPost.querySelector(".likeIcon");
                             const dislikeIcon = answerPost.querySelector(".dislikeIcon");
@@ -397,10 +395,21 @@ function fetchAndDisplayAnswers(subject, key) {
 
                             likeIcon.addEventListener("click", function () {
                                 if (likeIcon.classList.contains('liked')) {
-                                    like_current--;
-                                    console.log("likes--")
-                                    console.log(like_current)
-                                    console.log(dislike_current)
+                                    const yourDataRef2 = ref(database, `question/${subject}/${key}/answer/${key12}/`);
+                                    get(yourDataRef2)
+                                        .then((snapshot) => {
+                                            const data3 = snapshot.val();
+                                            console.log(data3);
+
+                                            likes = data3.likes;
+                                            dislikes = data3.unlikes;
+
+                                            likesCount.textContent = likes;
+                                            dislikeCount.textContent = dislikes;
+                                        })
+                                    likes--;
+
+
 
                                     get(like_ref)
                                         .then((snapshot) => {
@@ -414,19 +423,17 @@ function fetchAndDisplayAnswers(subject, key) {
                                         });
 
                                 } else {
-                                    like_current++;
-                                    console.log("likes++")
-                                    console.log(like_current)
-                                    console.log(dislike_current)
+                                    likes++;
+
+
                                     set(like_ref, {
                                         like_email: `${user.email}`
                                     });
 
                                     if (dislikeIcon.classList.contains('disliked')) {
-                                        dislike_current--;
-                                        console.log("dislikes-z1-")
-                                        console.log(like_current)
-                                        console.log(dislike_current)
+                                        dislikes--;
+
+
 
                                         get(dislike_ref)
                                             .then((snapshot) => {
@@ -444,12 +451,12 @@ function fetchAndDisplayAnswers(subject, key) {
                                 likeIcon.classList.toggle('liked');
                                 dislikeIcon.classList.remove('disliked');
 
-                                likesCount.textContent = like_current;
-                                dislikeCount.textContent = dislike_current;
+                                likesCount.textContent = likes;
+                                dislikeCount.textContent = dislikes;
 
                                 update(ref(database, `question/${subject}/${key}/answer/${key12}`), {
-                                    likes: like_current,
-                                    unlikes: dislike_current
+                                    likes: likes,
+                                    unlikes: dislikes
                                 });
 
 
@@ -460,10 +467,9 @@ function fetchAndDisplayAnswers(subject, key) {
 
                             dislikeIcon.addEventListener("click", function () {
                                 if (dislikeIcon.classList.contains('disliked')) {
-                                    dislike_current--;
-                                    console.log("dislikes--")
-                                    console.log(like_current)
-                                    console.log(dislike_current)
+                                    dislikes--;
+
+
                                     get(dislike_ref)
                                         .then((snapshot) => {
                                             const data2 = snapshot.val();
@@ -475,20 +481,18 @@ function fetchAndDisplayAnswers(subject, key) {
                                             console.error('Error retrieving dislike data:', error);
                                         });
                                 } else {
-                                    dislike_current++;
-                                    console.log("dislikes++")
-                                    console.log(like_current)
-                                    console.log(dislike_current)
+                                    dislikes++;
+
+
                                     set(dislike_ref, {
                                         dislike_email: `${user.email}`
                                     });
 
 
                                     if (likeIcon.classList.contains('liked')) {
-                                        like_current--;
-                                        console.log("likes-z1-")
-                                        console.log(like_current)
-                                        console.log(dislike_current)
+                                        likes--;
+
+
                                         get(like_ref)
                                             .then((snapshot) => {
                                                 const data2 = snapshot.val();
@@ -505,12 +509,12 @@ function fetchAndDisplayAnswers(subject, key) {
                                 likeIcon.classList.remove('liked');
 
 
-                                likesCount.textContent = like_current;
-                                dislikeCount.textContent = dislike_current;
+                                likesCount.textContent = likes;
+                                dislikeCount.textContent = dislikes;
 
                                 update(ref(database, `question/${subject}/${key}/answer/${key12}`), {
-                                    likes: like_current,
-                                    unlikes: dislike_current
+                                    likes: likes,
+                                    unlikes: dislikes
                                 });
                                 console.log(key12)
                             });
