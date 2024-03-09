@@ -97,9 +97,7 @@ a {
     white-space: normal;
 }
 
-/* .hr_post {
-    margin-top: 2rem;
-} */
+
 #hr_pre{
     margin-top: -0.5rem;
 }
@@ -179,5 +177,27 @@ a {
         outline: none;
         width: 13rem;
     }
+    .icons_tops {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 10px;
+        right: 10px;
+    margin: 20px;
+    
+    }
+    
+    .close {
+        background-color: rgb(54, 148, 60);
+        color: white;
+        border: none;
+        font-size: 100%;
+        font-weight: 700;
+        padding: 5px 8px;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-bottom:10px ;
+    }
+   
 
 }

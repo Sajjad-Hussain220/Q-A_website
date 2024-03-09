@@ -14,19 +14,28 @@ body {
 
 .liked {
     color: rgb(54, 148, 60);
-    /* Change the color to your preferred liked color */
+
 }
-#question_picture
-{
+#question_picture {
     display: none;
     max-width: 200px;
     max-height: 200px;
     border-radius: 4px;
     border: 1px solid rgb(54, 148, 60);
+    cursor: pointer;
+    transition: all 0.3s ease; 
 }
+
+#question_picture:hover {
+    max-height: 100%;
+    max-width: 100%;
+    height: auto;  
+    width: auto;   
+}
+
 .disliked {
     color: red;
-    /* Change the color to your preferred disliked color */
+
 }
 
 
@@ -94,7 +103,7 @@ a {
 }
 .like_div {
     display: flex;
-    align-items: center; /* Align items vertically in the center */
+    align-items: center;
 }
 .likes_count{
     margin: 0px;
@@ -102,7 +111,7 @@ a {
 }
 .dislike_div {
     display: flex;
-    align-items: center; /* Align items vertically in the center */
+    align-items: center; 
 }
 .dislike_count{
     margin: 0px;
@@ -344,6 +353,27 @@ a {
         max-height: 100px;
         border-radius: 4px;
         border: 1px solid rgb(54, 148, 60);
+    }
+    .icons_tops {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        margin: 20px;
+    
+    }
+    
+    .close {
+        background-color: rgb(54, 148, 60);
+        color: white;
+        border: none;
+        font-size: 100%;
+        font-weight: 700;
+        padding: 5px 8px;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-bottom:5px ;
     }
 
 }

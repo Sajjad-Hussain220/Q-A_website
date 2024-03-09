@@ -43,18 +43,6 @@ function closeButton1(anchorElement) {
         anchorElement.href = "./main_program/home.html";
     }
 }
-// // const question_input = document.getElementById("question_input");
-// const searchButton = document.getElementById("search_button");
-
-// searchButton && searchButton.addEventListener("click", function () {
-//     const inputValue = question_input.value.trim();  
-//     if (inputValue === "") {
-//         alert("Please input search value.");
-//     } else {
-//       const queryString1 = `./main_program/searching.html?subject=${encodeURIComponent(data.subject)}&key=${encodeURIComponent(data.id)}&userid=${encodeURIComponent(data.uid)}`;
-//       window.location.href = queryString1;
-//     }
-// });
 
   const question_input = document.getElementById("question_input");
   const suggestionsDropdown = document.getElementById("suggestionsDropdown");
@@ -75,9 +63,9 @@ function closeButton1(anchorElement) {
             const suggestionItem = document.createElement('div');
             suggestionItem.textContent = key;
 
-            // Add a click event listener to the suggestion item
+
             suggestionItem.addEventListener('click', function () {
-              // Implement the logic to display the data on the searched page
+
               displayData(data[key]);
             });
 
@@ -103,6 +91,9 @@ function closeButton1(anchorElement) {
   });
 
   function displayData(data) {
-    const queryString1 = `./main_program/searching.html?subject=${encodeURIComponent(data.subject)}&key=${encodeURIComponent(data.id)}&userid=${encodeURIComponent(data.uid)}`;
+    localStorage.setItem('subject', data.subject);
+    localStorage.setItem('key', data.id);
+    localStorage.setItem('userid', data.uid);
+    const queryString1 = "./main_program/searching.html";
     window.location.href = queryString1;
   }

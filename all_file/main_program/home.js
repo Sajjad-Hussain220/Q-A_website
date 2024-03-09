@@ -77,7 +77,7 @@ const selectedSubjects = shuffledSubjects.slice(0, 10);
 
 
 const container = document.querySelector('.tranding_question_container');
-container.innerHTML = ''; 
+container.innerHTML = '';
 
 
 const heading = document.createElement('h2');
@@ -89,50 +89,50 @@ let displayedQuestions = 0;
 
 
 for (const subject of selectedSubjects) {
-  
+
   if (displayedQuestions >= 10) {
     break;
   }
 
-  
+
   const yourDataRef = ref(database, 'question/' + subject);
 
-  
+
   get(yourDataRef)
     .then(snapshot => {
-     
+
       const data = snapshot.val();
 
-     
+
       if (data) {
-      
+
         const questionKeys = Object.keys(data);
 
-       
+
         const shuffledKeys = shuffleArray(questionKeys);
 
-      
+
         const selectedQuestions = Array.from(new Set(shuffledKeys.slice(0, 10)));
 
-      
+
         selectedQuestions.forEach((questionKey, index) => {
-        
+
           if (displayedQuestions >= 10) {
-            return; 
+            return;
           }
 
           const { question, subject } = data[questionKey];
 
-         
+
           const questionDiv = document.createElement('div');
           questionDiv.className = 'div_qu';
 
-         
+
           const h3 = document.createElement('h3');
           h3.className = `tranding_question_${index + 1}`;
           h3.textContent = question;
 
-  
+
           const link = document.createElement('a');
           link.href = `./post.html?subject=${encodeURIComponent(subject)}`;
           link.className = 'subject_selection';
@@ -149,7 +149,7 @@ for (const subject of selectedSubjects) {
 
 
 
-  
+
           displayedQuestions++;
         });
       }
@@ -202,7 +202,7 @@ logoutButton.addEventListener('click', async function () {
     try {
       await signOut(auth);
       console.log('User logged out');
-      window.location.href = '../../index.html'; 
+      window.location.href = '../../index.html';
     } catch (error) {
       console.error('Error during logout:', error);
     }
@@ -236,7 +236,7 @@ window.onresize = function () {
   } else {
     searchButton.style.display = "none";
   }
-}; 
+};
 
 const question_input = document.getElementById("question_input");
 const suggestionsDropdown = document.getElementById("suggestionsDropdown");
@@ -257,9 +257,8 @@ question_input.addEventListener("input", function () {
           const suggestionItem = document.createElement('div');
           suggestionItem.textContent = key;
 
-          // Add a click event listener to the suggestion item
           suggestionItem.addEventListener('click', function () {
-            // Implement the logic to display the data on the searched page
+
             displayData(data[key]);
           });
 
@@ -284,22 +283,17 @@ question_input.addEventListener("input", function () {
   });
 });
 
-function displayData(data) {
-  const queryString = `searching.html?subject=${encodeURIComponent(data.subject)}&key=${encodeURIComponent(data.id)}&userid=${encodeURIComponent(data.uid)}`;
-  window.location.href = queryString;
-}
 
-
-
-
-const searchButton = document.getElementById("search_button");
-
-searchButton && searchButton.addEventListener("click", function () {
-  const inputValue = question_input.value.trim();
-
-  if (inputValue === "") {
-    alert("Please input search value.");
-  } else {
-    window.location.href = `searching.html?question=${encodeURIComponent(inputValue)}`;
+  function displayData(data) {
+    localStorage.setItem('subject', data.subject);
+    localStorage.setItem('key', data.id);
+    localStorage.setItem('userid', data.uid);
+    const queryString1 = "searching.html";
+    window.location.href = queryString1;
   }
-});
+
+
+
+
+
+

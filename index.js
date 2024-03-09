@@ -196,7 +196,7 @@ document.addEventListener("DOMContentLoaded", function () {
   var userProfile = document.querySelector('.user-profile');
   var profileDropdown = document.querySelector('.profile-dropdown');
 
-  userProfile.addEventListener('click', function (event) {
+  userProfile && userProfile.addEventListener('click', function (event) {
     event.stopPropagation();
 
 
@@ -204,7 +204,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   document.addEventListener('click', function (event) {
-    if (!userProfile.contains(event.target) && !profileDropdown.contains(event.target)) {
+    if ( userProfile && !userProfile.contains(event.target) && !profileDropdown.contains(event.target)) {
       userProfile.classList.remove('show-dropdown');
     }
   });

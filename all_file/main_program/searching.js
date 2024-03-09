@@ -18,12 +18,16 @@ const db = getFirestore(app);
 const database = getDatabase(app);
 
 
-function getQueryParameters() {
-    const queryString = window.location.search.substring(1);
+// function getQueryParameters() {
+//     const queryString = window.location.search.substring(1);
     
-    const params = new URLSearchParams(queryString);
-    return params;
-}
+//     const params = new URLSearchParams(queryString);
+//     return params;
+  
+
+//     // Do something with the retrieved values
+//     console.log(subject, key, userid);
+// }
 
 
 
@@ -41,17 +45,17 @@ onLoad();
 
 
 
-const queryParameters = getQueryParameters();
+
 document && document.addEventListener('DOMContentLoaded', function () {
 
-    const key = queryParameters.get('key');
-    const subjectValue = queryParameters.get('subject');
-    const userid = queryParameters.get('userid');
 
+    const subjectValue = localStorage.getItem('subject');
+    const key = localStorage.getItem('key');
+    const userid = localStorage.getItem('userid');
 
 
     var yourDataRef = ref(database, `question/${subjectValue}/${key}`);
-    console.log(key, subjectValue, userid);
+;
 
 
     get(yourDataRef)
@@ -69,8 +73,7 @@ document && document.addEventListener('DOMContentLoaded', function () {
                 let user_img = ""
                 getDocs(userCollectionRef)
                     .then((querySnapshot) => {
-                        // for (const key in data) {
-                        //     console.log(key)
+         
                             var { email, question, subject, date, question_image } = data;
 
 
