@@ -18,17 +18,7 @@ const db = getFirestore(app);
 const database = getDatabase(app);
 
 
-const onLoad = () => {
-    onAuthStateChanged(auth, (user) => {
-        if (user) {
-        } else {
-            alert("Please Login first ");
 
-            window.location.href = "../../index.html";
-        }
-    });
-};
-onLoad();
 
 document && document.addEventListener('DOMContentLoaded', function () {
 
@@ -44,6 +34,7 @@ document && document.addEventListener('DOMContentLoaded', function () {
 
 
         var subjectTextElement = document.getElementById('subjectText');
+        const loader = document.querySelector(".loader");
         if (subjectTextElement) {
             subjectTextElement.textContent = subjectValue;
 
@@ -58,7 +49,6 @@ document && document.addEventListener('DOMContentLoaded', function () {
                     if (data) {
                         let html = "";
                         const container = document.querySelector('.main_post')
-                        alert("please wait")
 
 
                         const userCollectionRef = collection(db, "user_information");
@@ -118,6 +108,10 @@ document && document.addEventListener('DOMContentLoaded', function () {
                                 }
 
                                 container.innerHTML = html;
+                                loader.classList.add("loader--hidden");
+                                loader.addEventListener("transitionend", () => {
+                                    document.body.removeChild(loader);
+                                });
                                 var questionPictures = container.querySelectorAll('#question_picture');
 
                                 questionPictures.forEach((picture) => {
@@ -183,10 +177,10 @@ function update1(event, subject) {
     const key = event.currentTarget.getAttribute("data-key");
     const answerInputs = document.querySelectorAll(`.answerInput[data-key="${key}"]`);
 
-    // Create an array to store input values
+ 
     const inputValues = [];
 
-    // Iterate over the NodeList and get the value of each input element
+ 
     answerInputs.forEach((input) => {
         inputValues.push(input.value);
     });
@@ -396,7 +390,7 @@ function fetchAndDisplayAnswers(subject, key) {
 
                                     likedic[key12]--;
                                     get(like_ref)
-                                        .then((snapshot) => { 
+                                        .then((snapshot) => {
                                             const data2 = snapshot.val();
                                             if (user && data2 && data2.like_email === user.email) {
                                                 update(like_ref, { like_email: null });

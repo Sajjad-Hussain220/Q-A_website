@@ -18,30 +18,21 @@ const db = getFirestore(app);
 const database = getDatabase(app);
 
 
-// function getQueryParameters() {
-//     const queryString = window.location.search.substring(1);
-    
-//     const params = new URLSearchParams(queryString);
-//     return params;
-  
-
-//     // Do something with the retrieved values
-//     console.log(subject, key, userid);
-// }
 
 
 
-const onLoad = () => {
-    onAuthStateChanged(auth, (user) => {
-        if (user) {
 
-        } else {
+// const onLoad = () => {
+//     onAuthStateChanged(auth, (user) => {
+//         if (user) {
 
-            window.location.href = "../../index.html";
-        }
-    });
-};
-onLoad();
+//         } else {
+
+//             window.location.href = "../../index.html";
+//         }
+//     });
+// };
+// onLoad();
 
 
 
@@ -52,7 +43,7 @@ document && document.addEventListener('DOMContentLoaded', function () {
     const subjectValue = localStorage.getItem('subject');
     const key = localStorage.getItem('key');
     const userid = localStorage.getItem('userid');
-
+    const loader = document.querySelector(".loader");
 
     var yourDataRef = ref(database, `question/${subjectValue}/${key}`);
 ;
@@ -65,7 +56,7 @@ document && document.addEventListener('DOMContentLoaded', function () {
             if (data) {
                 let html = "";
                 const container = document.querySelector('.main_post')
-                alert("please wait")
+               
 
 
                 const userCollectionRef = collection(db, `user_information/`);
@@ -124,6 +115,11 @@ document && document.addEventListener('DOMContentLoaded', function () {
                         // }
 
                         container.innerHTML = html;
+                        loader.classList.add("loader--hidden");
+                        loader.addEventListener("transitionend", () => {
+                            document.body.removeChild(loader);
+                        });
+
                         var questionPictures = container.querySelectorAll('#question_picture');
 
                         questionPictures.forEach((picture) => {

@@ -44,6 +44,7 @@ let registerUser = async (evt) => {
                     await setDoc(ref, {
                         Name: object.username,
                         email: object.useremail,
+                        profilePictureURL: "https://firebasestorage.googleapis.com/v0/b/q-a-database-bb349.appspot.com/o/green_picture.png?alt=media&token=90839950-ec70-4c76-af30-480fb10faf3d",
                     });
 
                     alert("please conform email verification link")

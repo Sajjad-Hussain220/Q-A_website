@@ -74,12 +74,12 @@ a {
     color: inherit;
 }
 
-/* Add these styles to your existing CSS */
+
 
 .user-profile {
     position: relative;
     margin-left: 2px;
-    /* Adjust as needed */
+
     cursor: pointer;
 }
 
@@ -87,7 +87,6 @@ a {
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    margin-right: 8px;
 }
 
 .profile-dropdown {
@@ -398,7 +397,43 @@ a {
 #suggestionsDropdown div:hover {
     background-color: #e5e5e5;
 }
-
+.loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.75s, visibility 0.75s;
+ 
+  }
+  
+  .loader--hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+  
+  .loader::after {
+    content: "";
+    width: 50px;
+    height: 50px;
+    border: 4px solid #dddddd;
+    border-top-color:  rgb(54, 148, 60);
+    border-radius: 50%;
+    animation: loading 0.75s ease infinite;
+  }
+  
+  @keyframes loading {
+    from {
+      transform: rotate(0turn);
+    }
+    to {
+      transform: rotate(1turn);
+    }
+  }
+  
 @media (max-width: 600px) {
     body {
         margin: 0;

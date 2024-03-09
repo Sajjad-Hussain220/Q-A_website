@@ -231,58 +231,67 @@ window.onresize = function () {
   var searchButton = document.querySelector(".serach_nav");
 
 
-  if (window.innerWidth > 600) {
+  if (window.innerWidth > 8000) {
     searchButton.style.display = "inline-block";
   } else {
     searchButton.style.display = "none";
   }
 };
-
 const question_input = document.getElementById("question_input");
 const suggestionsDropdown = document.getElementById("suggestionsDropdown");
+
+const loader = document.querySelector(".loader");
 
 question_input.addEventListener("input", function () {
   const yourDataRef = ref(database, 'question_searching/');
 
-  get(yourDataRef).then(snapshot => {
-    const data = snapshot.val();
+  // Show loader before fetching data
+  loader.classList.remove("loader--hidden");
 
-    suggestionsDropdown.innerHTML = '';
+  get(yourDataRef)
+    .then(snapshot => {
+      const data = snapshot.val();
 
-    if (question_input.value.trim() !== '' && data) {
-      let foundSuggestions = false;
+      suggestionsDropdown.innerHTML = '';
 
-      Object.keys(data).forEach(key => {
-        if (key.includes(question_input.value)) {
-          const suggestionItem = document.createElement('div');
-          suggestionItem.textContent = key;
+      if (question_input.value.trim() !== '' && data) {
+        let foundSuggestions = false;
 
-          suggestionItem.addEventListener('click', function () {
+        Object.keys(data).forEach(key => {
+          if (key.toLowerCase().includes(question_input.value.toLowerCase())) {
+            const suggestionItem = document.createElement('div');
+            suggestionItem.textContent = key;
 
-            displayData(data[key]);
-          });
+            suggestionItem.addEventListener('click', function () {
+              displayData(data[key]);
+            });
 
-          suggestionsDropdown.appendChild(suggestionItem);
-          foundSuggestions = true;
+            suggestionsDropdown.appendChild(suggestionItem);
+            foundSuggestions = true;
+          }
+        });
+
+        if (!foundSuggestions) {
+          const notFoundMessage = document.createElement('div');
+          notFoundMessage.textContent = 'Not Found';
+          notFoundMessage.id = 'notFoundMessage';
+          suggestionsDropdown.appendChild(notFoundMessage);
         }
-      });
 
-      if (!foundSuggestions) {
-        const notFoundMessage = document.createElement('div');
-        notFoundMessage.textContent = 'Not Found';
-        notFoundMessage.id = 'notFoundMessage';
-        suggestionsDropdown.appendChild(notFoundMessage);
+        suggestionsDropdown.style.display = 'block';
+      } else {
+        suggestionsDropdown.style.display = 'none';
       }
 
-      suggestionsDropdown.style.display = 'block';
-    } else {
-      suggestionsDropdown.style.display = 'none';
-    }
-  }).catch(error => {
-    console.error("Error fetching data:", error);
-  });
+      // Hide loader after data is fetched
+      loader.classList.add("loader--hidden");
+    })
+    .catch(error => {
+      console.error("Error fetching data:", error);
+      // Hide loader on error
+      loader.classList.add("loader--hidden");
+    });
 });
-
 
   function displayData(data) {
     localStorage.setItem('subject', data.subject);
