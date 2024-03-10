@@ -198,6 +198,7 @@ a {
 }
 .Arrow_top_related
 {
+    cursor: pointer;
     margin-right: 1rem;
 }
 #tranding_question_main {

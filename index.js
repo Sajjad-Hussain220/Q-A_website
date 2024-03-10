@@ -21,51 +21,56 @@ const dp = getFirestore(app);
 
 
 var subjectSelects = document.querySelectorAll('.subject_select');
-var serch= document.getElementById('serch');
+var serch = document.getElementById('serch'); 
+const subjectSelectionElements = document.querySelectorAll('.subject_selection');
+
 const onLoad = () => {
   onAuthStateChanged(auth, (user) => {
     if (user) {
-        console.log("User is logged in:", user.uid);
-        window.location.href = "./all_file/main_program/home.html"
-      } else {
-        alert("Please Login first ");
-        console.log("Please Login first ");
-        
-      }
+      console.log("User is logged in:", user.uid);
+      window.location.href = "./all_file/main_program/home.html";
+    } else {
+      alert("Please Login first ");
+      console.log("Please Login first ");
+    }
   });
 };
+
+
+
 subjectSelects.forEach((element) => {
   element.addEventListener('click', onLoad);
 });
-serch.addEventListener('click' ,onLoad)
+
+serch.addEventListener('click', onLoad)
 onLoad()
 
 window.onscroll = function () {
-    // Get the navbar element
-    var navbar = document.getElementById("nave_button");
+  // Get the navbar element
+  var navbar = document.getElementById("nave_button");
 
-    // Get the button element
-    var searchButton = document.querySelector(".serach_nav");
+  // Get the button element
+  var searchButton = document.querySelector(".serach_nav");
 
-    // Check if the user has scrolled down enough to make the navbar sticky
-    if (window.pageYOffset >= navbar.offsetTop) {
-        // If scrolled down, display the search button
-        searchButton.style.display = "inline-block";
-    } else {
+  // Check if the user has scrolled down enough to make the navbar sticky
+  if (window.pageYOffset >= navbar.offsetTop) {
 
-        searchButton.style.display = "none";
-    }
+    searchButton.style.display = "inline-block";
+  } else {
+
+    searchButton.style.display = "none";
+  }
 };
 
 
 window.onresize = function () {
-    var searchButton = document.querySelector(".serach_nav");
+  var searchButton = document.querySelector(".serach_nav");
 
-    if (window.innerWidth > 600) {
-        searchButton.style.display = "inline-block";
-    } else {
-        searchButton.style.display = "none";
-    }
+  if (window.innerWidth > 600) {
+    searchButton.style.display = "inline-block";
+  } else {
+    searchButton.style.display = "none";
+  }
 };
 
 
@@ -91,7 +96,7 @@ const optionValues = [
   "Animals & Plants",
   "Engineering & Technology",
   "Others"
-]; 
+];
 const shuffledSubjects = shuffleArray(optionValues);
 
 
@@ -100,7 +105,7 @@ const selectedSubjects = shuffledSubjects.slice(0, 10);
 
 
 const container = document.querySelector('.tranding_question_container');
-container.innerHTML = ''; 
+container.innerHTML = '';
 
 
 const heading = document.createElement('h2');
@@ -112,54 +117,55 @@ let displayedQuestions = 0;
 
 
 for (const subject of selectedSubjects) {
-  
+
   if (displayedQuestions >= 10) {
     break;
   }
-  
+
   const yourDataRef = ref(database, 'question/' + subject);
 
-  
+
   get(yourDataRef)
     .then(snapshot => {
-     
+
       const data = snapshot.val();
 
-     
+
       if (data) {
-      
+
         const questionKeys = Object.keys(data);
 
-       
+
         const shuffledKeys = shuffleArray(questionKeys);
 
-      
+
         const selectedQuestions = Array.from(new Set(shuffledKeys.slice(0, 10)));
 
-      
+
         selectedQuestions.forEach((questionKey, index) => {
-        
+
           if (displayedQuestions >= 10) {
-            return; 
+            return;
           }
 
           const { question, subject } = data[questionKey];
 
-         
+
           const questionDiv = document.createElement('div');
           questionDiv.className = 'div_qu';
 
-         
+
           const h3 = document.createElement('h3');
           h3.className = `tranding_question_${index + 1}`;
           h3.textContent = question;
 
-  
+
           const link = document.createElement('a');
-          link.href = `./post.html?subject=${encodeURIComponent(subject)}`;
           link.className = 'subject_selection';
           link.innerHTML = `<i class="ri-arrow-up-line Arrow_top_related"></i>`;
+          link.addEventListener('click', onLoad);
 
+   
           if (index < 9) {
             container.appendChild(document.createElement('hr'));
           }
@@ -171,7 +177,7 @@ for (const subject of selectedSubjects) {
 
 
 
-  
+
           displayedQuestions++;
         });
       }
@@ -204,7 +210,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   document.addEventListener('click', function (event) {
-    if ( userProfile && !userProfile.contains(event.target) && !profileDropdown.contains(event.target)) {
+    if (userProfile && !userProfile.contains(event.target) && !profileDropdown.contains(event.target)) {
       userProfile.classList.remove('show-dropdown');
     }
   });
